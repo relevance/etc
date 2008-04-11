@@ -1,0 +1,16 @@
+# Add this to .gitconfig in your home dir to enable things like "git ci -m message"
+[alias]
+	ci = commit
+	co = checkout
+	st = status
+	br = branch
+
+	# show difference between the HEAD and the index
+	staged = diff --cached
+	
+	# show difference between working tree and the index
+  unstaged = diff
+
+  # show staged and unstaged changes (what would be committed with "git commit -a")
+  both = diff HEAD
+  
