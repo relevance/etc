@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# Startup script for the nginx Server
+#
+# chkconfig: 345 85 15
+# description: nginx is a World Wide Web server.
+# processname: nginx
+# pidfile: /usr/local/nginx/logs/nginx.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+case "$1" in
+  start)
+        echo -n "Starting nginx"
+        /usr/local/sbin/nginx -c /usr/local/nginx/conf/nginx.conf || echo -n " already running"
+        touch /var/lock/subsys/nginx
+        echo
+        ;;
+  stop)
+        echo -n "Stopping nginx"
+        killproc nginx
+        echo
+        rm -f /var/lock/subsys/nginx
+        rm -f /usr/local/nginx/logs/nginx.pid
+        ;;
+  restart)
+        echo -n "Restarting nginx"
+        $0 stop
+        # One second might not be time enough for a daemon to stop, 
+        # if this happens, d_start will fail (and dpkg will break if 
+        # the package is being upgraded). Change the timeout if needed
+        # be, or change d_stop to have start-stop-daemon use --retry. 
+        # Notice that using --retry slows down the shutdown process somewhat.
+        sleep 1
+        $0 start
+        echo "."
+        ;;
+  *)
+  echo "Usage: $0 {start|stop|restart}"
+  exit 1
+  ;;
+esac
+
+exit 0

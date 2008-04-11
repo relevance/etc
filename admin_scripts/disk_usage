@@ -1,0 +1,13 @@
+#!/bin/sh
+
+MAILTO=you@yourdomain.com
+
+df -h | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 " " $1 }' | while read output;
+do
+  consumed=$(echo $output | awk '{ print $1}' | cut -d'%' -f1  )
+  partition=$(echo $output | awk '{ print $2 }' )
+  if [ $consumed -ge 95 ]; then
+    echo "Running out of disk space on \"$partition [$consumed% consumed]\" on $(hostname)" |
+        mail -s "[ALERT]: $(hostname) is almost out of disk space" $MAILTO
+  fi
+done
