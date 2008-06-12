@@ -67,4 +67,4 @@ PS1='\[\e]2;\h::\]${PWD/$HOME/~}\[\a\]\[\e]1;\][$(history 1 | sed -e "s/^[ ]*[0-
 
 # Show the currently running command in the terminal title:
 # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
-trap 'echo -e "\e]0;>$BASH_COMMAND<\007\c"' DEBUG
+trap 'echo -e "\e]1;>$BASH_COMMAND<\007\c"' DEBUG
