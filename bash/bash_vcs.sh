@@ -24,7 +24,7 @@ __vcs_dir() {
 		vcs="git"
 		alias pull="git pull"
 		alias commit="git commit -a"
-		alias push="commit && git push"
+		alias push="commit ; git push"
 		alias revert="git checkout"
 	}
 
@@ -50,6 +50,7 @@ __vcs_dir() {
 		alias up="pull"
 		alias cdb="cd $base_dir"
 		base_dir="$(basename "${base_dir}")"
+    WORKING_ON="$base_dir:"
 		__vcs_prefix="($vcs)"
 		__vcs_ref="[$ref]"
 		__vcs_sub_dir="${sub_dir}"
@@ -59,6 +60,7 @@ __vcs_dir() {
 		__vcs_base_dir="${PWD/$HOME/~}"
 		__vcs_ref=''
 		__vcs_sub_dir=''
+    WORKING_ON=""
 	fi
 }
 
@@ -72,7 +74,7 @@ PS1='\[\e]2;\h::\]${PWD/$HOME/~}\[\a\]\[\e]1;\][$(history 1 | sed -e "s/^[ ]*[0-
 if [ -z "$TM_SUPPORT_PATH"]; then
 case $TERM in
   rxvt|*term|xterm-color)
-    trap 'echo -e "\e]1;>$BASH_COMMAND<\007\c"' DEBUG
+    trap 'echo -e "\e]1;$WORKING_ON>$BASH_COMMAND<\007\c"' DEBUG
   ;;
 esac
 fi
