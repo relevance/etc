@@ -1,8 +1,8 @@
 _bold=$(tput bold)
 _normal=$(tput sgr0)
 
-__vcs_dir() {
-	local vcs base_dir sub_dir ref
+__prompt_command() {
+	local vcs base_dir sub_dir ref last_command
 	sub_dir() {
 		local sub_dir
 		sub_dir=$(stat -f "${PWD}")
@@ -16,7 +16,7 @@ __vcs_dir() {
 			base_dir=`cd $base_dir; pwd`
 		else
 			base_dir=$PWD
-		 fi
+		fi
 		sub_dir=$(git-rev-parse --show-prefix)
 		sub_dir="/${sub_dir%/}"
 		ref=$(git-symbolic-ref -q HEAD || git-name-rev --name-only HEAD 2>/dev/null)
@@ -67,7 +67,7 @@ __vcs_dir() {
 		alias up="pull"
 		alias cdb="cd $base_dir"
 		base_dir="$(basename "${base_dir}")"
-    WORKING_ON="$base_dir:"
+    working_on="$base_dir:"
 		__vcs_prefix="($vcs)"
 		__vcs_ref="[$ref]"
 		__vcs_sub_dir="${sub_dir}"
@@ -77,19 +77,22 @@ __vcs_dir() {
 		__vcs_base_dir="${PWD/$HOME/~}"
 		__vcs_ref=''
 		__vcs_sub_dir=''
-    WORKING_ON=""
+    working_on=""
 	fi
+
+	last_command=$(history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g")
+	__tab_title="$working_on[$last_command]"
 }
 
-PROMPT_COMMAND=__vcs_dir
-PS1='\[\e]2;\h::${PWD/$HOME/~}\a\e]1;$WORKING_ON[$(history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g")]\a\]\u:$__vcs_prefix\[${_bold}\]${__vcs_base_dir}\[${_normal}\]${__vcs_ref}\[${_bold}\]${__vcs_sub_dir}\[${_normal}\]\$ '
+PROMPT_COMMAND=__prompt_command
+PS1='\[\e]2;\h::${PWD/$HOME/~}\a\e]1;$__tab_title\a\]\u:$__vcs_prefix\[${_bold}\]${__vcs_base_dir}\[${_normal}\]${__vcs_ref}\[${_bold}\]${__vcs_sub_dir}\[${_normal}\]\$ '
 
 # Show the currently running command in the terminal title:
 # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
 if [ -z "$TM_SUPPORT_PATH"]; then
 case $TERM in
   rxvt|*term|xterm-color)
-    trap 'echo -e "\e]1;$WORKING_ON>$BASH_COMMAND<\007\c"' DEBUG
+    trap 'echo -e "\e]1;$working_on>$BASH_COMMAND<\007\c"' DEBUG
   ;;
 esac
 fi
