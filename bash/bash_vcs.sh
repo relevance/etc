@@ -42,7 +42,24 @@ __vcs_dir() {
 		alias revert="svn revert"
 	}
 
-	git_dir || svn_dir
+	bzr_dir() {
+		base_dir=$(bzr root 2>/dev/null) || return 1
+		if [ -n "$base_dir" ]; then
+			base_dir=`cd $base_dir; pwd`
+		else
+			base_dir=$PWD
+		fi
+		sub_dir="/$(sub_dir "${base_dir}")"
+		ref=$(bzr revno 2>/dev/null)
+		vcs="bzr"
+		alias pull="bzr pull"
+		alias commit="bzr commit"
+		alias push="bzr push"
+		alias revert="bzr revert"
+	}
+	
+
+	git_dir || svn_dir || bzr_dir
 
 	if [ -n "$vcs" ]; then
 		alias st="$vcs status"
