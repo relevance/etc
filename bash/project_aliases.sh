@@ -1,5 +1,5 @@
 # In ~/.bash_profile :
-#   - define a PROJECT_PARENT_DIRS directory.  e.g. 
+#   - define a PROJECT_PARENT_DIRS array.  e.g. 
 #     PROJECT_PARENT_DIRS[0]="~/src"
 #     PROJECT_PARENT_DIRS[1]="~/work"
 #   - execute this file.  e.g.
