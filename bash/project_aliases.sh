@@ -1,3 +1,10 @@
+# In ~/.bash_profile :
+#   - define a PROJECT_PARENT_DIRS directory.  e.g. 
+#     PROJECT_PARENT_DIRS[0]="~/src"
+#     PROJECT_PARENT_DIRS[1]="~/work"
+#   - execute this file.  e.g.
+#     source ~/.project_aliases.sh
+
 if [ -z "${PROJECT_PARENT_DIRS[*]}" ]; then
 	echo "Define a PROJECT_PARENT_DIRS array in ~/.bash_profile"
 fi
