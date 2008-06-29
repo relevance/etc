@@ -1,6 +1,6 @@
 # In ~/.bash_profile define a PROJECT_PARENT_DIRS array and source this script. e.g.
-#  PROJECT_PARENT_DIRS[0]="~/src"
-#  PROJECT_PARENT_DIRS[1]="~/work"
+#  PROJECT_PARENT_DIRS[0]="$HOME/src"
+#  PROJECT_PARENT_DIRS[1]="$HOME/work"
 #  source ~/.project_aliases.sh
 
 if [ -z "${PROJECT_PARENT_DIRS[*]}" ]; then
