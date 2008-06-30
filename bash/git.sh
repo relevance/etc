@@ -8,6 +8,7 @@ alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gb='git branch'
 alias gba='git branch -a'
+alias gpp='git pull; git push'
 # For when you are stuck between worlds...
 alias gsd='git svn dcommit'
 alias gsb='git svn rebase'
