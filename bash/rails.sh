@@ -1,4 +1,4 @@
-echo "[ executing ruby.sh ]"
+echo "[ executing rails.sh ]"
 
 # ruby shortcuts
 alias sc='script/console'
