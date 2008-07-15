@@ -86,13 +86,5 @@ alias src='cd ~/src'
 alias docs='cd ~/documents'
 alias scripts='cd ~/src/scripts'
 
-# ssh autocompletion
-SSH_COMPLETE=( $(cat ~/.ssh/known_hosts | \
-cut -f 1 -d ' ' | \
-sed -e s/,.*//g | \
-uniq | \
-egrep -v [0123456789]) )
-complete -o default -W "${SSH_COMPLETE[*]}" ssh
-
 alias h?="history | grep "
 alias ps?="ps aux | grep "
