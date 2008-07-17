@@ -19,6 +19,7 @@ alias lt='ll -t'
 alias la='lt -a'
 alias ltr='ls -ltr'
 alias lth='ll -t|head'
+alias ltr='ls -ltr'
 alias lh='ls -Shl | less'
 alias tf='tail -f'
 alias t500='tail -n 500'
@@ -33,21 +34,6 @@ alias sci='svn ci -m'
 alias sdiff='svn diff | colordiff'
 alias smate='svn diff | mate && svn ci'
 alias sadd="sst | grep '?' | cut -c5- | xargs svn add"
-
-# git
-alias gst='git status'
-alias gl='git pull'
-alias gp='git push'
-alias gd='git diff | mate'
-alias gc='git commit -v'
-alias gca='git commit -v -a'
-alias gb='git branch'
-alias gba='git branch -a'
-alias gcap='git commit -v -a && git push'
-
-# git svn
-alias gsr='git svn rebase' 
-alias gsd='git svn dcommit' 
 
 # editing shortcuts
 alias m='mate'
