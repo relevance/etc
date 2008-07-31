@@ -1,0 +1,4 @@
+# making screen a little more user friendly
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%w%=%m/%d %c" 
