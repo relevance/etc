@@ -75,3 +75,7 @@ alias scripts='cd ~/src/scripts'
 
 alias h?="history | grep "
 alias ps?="ps aux | grep "
+
+# display battery info on your Mac
+# see http://blog.justingreer.com/post/45839440/a-tale-of-two-batteries
+alias battery='ioreg -w0 -l | grep Capacity | cut -d " " -f 17-50'
