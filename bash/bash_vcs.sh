@@ -11,15 +11,15 @@ __prompt_command() {
 	}
 
 	git_dir() {
-		base_dir=$(git-rev-parse --show-cdup 2>/dev/null) || return 1
+		base_dir=$(git rev-parse --show-cdup 2>/dev/null) || return 1
 		if [ -n "$base_dir" ]; then
 			base_dir=`cd $base_dir; pwd`
 		else
 			base_dir=$PWD
 		fi
-		sub_dir=$(git-rev-parse --show-prefix)
+		sub_dir=$(git rev-parse --show-prefix)
 		sub_dir="/${sub_dir%/}"
-		ref=$(git-symbolic-ref -q HEAD || git-name-rev --name-only HEAD 2>/dev/null)
+		ref=$(git symbolic-ref -q HEAD || git name-rev --name-only HEAD 2>/dev/null)
 		ref=${ref#refs/heads/}
 		vcs="git"
 		alias pull="git pull"
