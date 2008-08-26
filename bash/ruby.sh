@@ -3,7 +3,8 @@ echo "[ executing ruby.sh ]"
 # always load gems for ruby
 export RUBYOPT=rubygems
 
-complete -C ~/src/scripts/bin/rake_autocompletion.rb -o default rake
+# this is broken - disabling for now...
+# complete -C ~/src/relevance/etc/bash/rake_autocompletion.rb -o default rake
 
 # rubygems shortcuts (http://stephencelis.com/archive/2008/6/bashfully-yours-gem-shortcuts)
 alias gems='cd /opt/local/lib/ruby/gems/1.8/gems'
