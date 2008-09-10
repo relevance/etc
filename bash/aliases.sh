@@ -15,11 +15,8 @@ alias screen='TERM=screen screen'
 
 # listing files
 alias l='ls -al'
-alias lt='ll -t'
-alias la='lt -a'
 alias ltr='ls -ltr'
-alias lth='ll -t|head'
-alias ltr='ls -ltr'
+alias lth='l -t|head'
 alias lh='ls -Shl | less'
 alias tf='tail -f -n 100'
 alias t500='tail -n 500'
