@@ -22,6 +22,11 @@ complete -o default -o nospace -F _gemdocomplete gemdoc
 alias autou='autotest'
 alias autof='AUTOTEST=functional autotest'
 
+# run autotest locked to ZenTest 3.9.2
+alias autou392='autotest _3.9.2_'
+alias autof392='AUTOTEST=functional autotest _3.9.2_'
+
+
 # shorten mongrel cluster commands
 # example: cluster_start myapp
 cluster_restart () { mongrel_rails cluster::restart -C /etc/mongrel_cluster/$1.yml;}
