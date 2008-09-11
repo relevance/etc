@@ -1,5 +1,3 @@
-echo "[ executing rails.sh ]"
-
 # ruby shortcuts
 alias sc='script/console'
 alias scprod='script/console production'

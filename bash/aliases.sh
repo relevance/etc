@@ -1,5 +1,3 @@
-echo "[ executing aliases.sh ]"
-
 # general shortcuts
 alias c='cd '
 alias mv='mv -i'
