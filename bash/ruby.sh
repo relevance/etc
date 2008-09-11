@@ -1,5 +1,3 @@
-echo "[ executing ruby.sh ]"
-
 # always load gems for ruby
 export RUBYOPT=rubygems
 
