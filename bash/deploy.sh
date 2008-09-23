@@ -5,7 +5,7 @@ if [ -z "${PROJECT_NAME}" ]; then
 fi
 
 # TODO add support and autodetection for /data root, maybe the /u root, and allowing user to override the root
-PROJECT_ROOT="/var/www/apps/${PROJECT_NAME}"
+PROJECT_ROOT="/var/www/domains/${PROJECT_NAME}/www/app"
 PROJECT_CURRENT="${PROJECT_ROOT}/current"
 PROJECT_SHARED="${PROJECT_ROOT}/shared"
 
