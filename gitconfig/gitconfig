@@ -1,0 +1,8 @@
+# These should be placed into ~/.gitconfig
+[alias]
+      st = status
+      di = diff
+      co = checkout
+      ci = commit
+      br = branch
+      sta = stash
