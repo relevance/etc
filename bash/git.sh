@@ -1,5 +1,5 @@
 # Thanks to Geoffrey's peepcode for many of these
-alias g='git'
+alias g='git '
 alias gst='git status'
 alias gl='git pull'
 alias gp='git push'
@@ -19,4 +19,5 @@ alias gsr='git svn rebase'
 #   sudo port install git-core +bash_completion 
 if [ -f /opt/local/etc/bash_completion ]; then
 	. /opt/local/etc/bash_completion
+  complete -o default -o nospace -F _git g
 fi
