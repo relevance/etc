@@ -6,3 +6,5 @@
       ci = commit
       br = branch
       sta = stash
+[core]
+	excludesfile = $HOME/.gitignore
