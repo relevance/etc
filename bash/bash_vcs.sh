@@ -23,7 +23,7 @@ __prompt_command() {
 		ref=${ref#refs/heads/}
 		vcs="git"
 		alias pull="git pull"
-		alias commit="git commit -a"
+		alias commit="git commit -v -a"
 		alias push="commit ; git push"
 		alias revert="git checkout"
 	}
