@@ -1,9 +1,8 @@
-echo "[ executing ruby.sh ]"
-
 # always load gems for ruby
 export RUBYOPT=rubygems
 
-complete -C ~/src/scripts/bin/rake_autocompletion.rb -o default rake
+# this is broken - disabling for now...
+# complete -C ~/src/relevance/etc/bash/rake_autocompletion.rb -o default rake
 
 # rubygems shortcuts (http://stephencelis.com/archive/2008/6/bashfully-yours-gem-shortcuts)
 alias gems='cd /opt/local/lib/ruby/gems/1.8/gems'
@@ -20,6 +19,11 @@ complete -o default -o nospace -F _gemdocomplete gemdoc
 # unit_record and autotest
 alias autou='autotest'
 alias autof='AUTOTEST=functional autotest'
+
+# run autotest locked to ZenTest 3.9.2
+alias autou392='autotest _3.9.2_'
+alias autof392='AUTOTEST=functional autotest _3.9.2_'
+
 
 # shorten mongrel cluster commands
 # example: cluster_start myapp

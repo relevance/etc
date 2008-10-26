@@ -1,5 +1,3 @@
-echo "[ executing aliases.sh ]"
-
 # general shortcuts
 alias c='cd '
 alias mv='mv -i'
@@ -15,11 +13,8 @@ alias screen='TERM=screen screen'
 
 # listing files
 alias l='ls -al'
-alias lt='ll -t'
-alias la='lt -a'
 alias ltr='ls -ltr'
-alias lth='ll -t|head'
-alias ltr='ls -ltr'
+alias lth='l -t|head'
 alias lh='ls -Shl | less'
 alias tf='tail -f -n 100'
 alias t500='tail -n 500'
@@ -75,3 +70,7 @@ alias scripts='cd ~/src/scripts'
 
 alias h?="history | grep "
 alias ps?="ps aux | grep "
+
+# display battery info on your Mac
+# see http://blog.justingreer.com/post/45839440/a-tale-of-two-batteries
+alias battery='ioreg -w0 -l | grep Capacity | cut -d " " -f 17-50'
