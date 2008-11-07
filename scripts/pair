@@ -11,7 +11,7 @@
 #######################################################################
 ## Configuration
 
-PAIR_EMAIL = "relevance@thinkrelevance.com"
+PAIR_EMAIL = "pair@thinkrelevance.com"
 
 AUTHORS = {
   "ab" => "Aaron Bedra",
@@ -66,4 +66,3 @@ else
   
   puts "Unset user.name and user.email"
 end
-
