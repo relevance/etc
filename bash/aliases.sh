@@ -46,12 +46,7 @@ alias m8prof='m ~/src/scripts/profile.d/'
 # ignore svn metadata - pipe this into xargs to do stuff
 alias no_svn="find . -path '*/.svn' -prune -o -type f -print"
 
-function findfile { find . -name \*$1\*
-}
-function orig { mv $1 orig-$1 ; cp orig-$1 $1; ls -lt $1 orig-$1
-}
-function ps? { ps -aux | grep -i $* | grep -v grep 
-}
+function ps? { ps -aux | grep -i $* | grep -v grep }
 
 # Mac style apache control
 # alias htstart='sudo /System/Library/StartupItems/Apache/Apache start'
