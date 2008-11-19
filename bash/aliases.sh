@@ -47,8 +47,7 @@ alias m8prof='m ~/src/scripts/profile.d/'
 alias no_svn="find . -path '*/.svn' -prune -o -type f -print"
 
 # grep for a process
-function ps?
-{
+function psg {
   FIRST=`echo $1 | sed -e 's/^\(.\).*/\1/'`
   REST=`echo $1 | sed -e 's/^.\(.*\)/\1/'`
   ps aux | grep "[$FIRST]$REST"
