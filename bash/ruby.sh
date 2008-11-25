@@ -1,9 +1,6 @@
 # always load gems for ruby
 export RUBYOPT=rubygems
 
-# this is broken - disabling for now...
-# complete -C ~/src/relevance/etc/bash/rake_autocompletion.rb -o default rake
-
 # rubygems shortcuts (http://stephencelis.com/archive/2008/6/bashfully-yours-gem-shortcuts)
 alias gems='cd /opt/local/lib/ruby/gems/1.8/gems'
 export GEMDIR=`gem env gemdir`
@@ -15,6 +12,10 @@ _gemdocomplete() {
   return 0
 }
 complete -o default -o nospace -F _gemdocomplete gemdoc
+
+gemlite() {
+  gem install $1 --no-rdoc --no-ri
+}
 
 # unit_record and autotest
 alias autou='autotest'
