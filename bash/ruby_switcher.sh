@@ -13,10 +13,10 @@ function use_ruby_191 {
 function update_path {
  export PATH=$GEM_HOME/bin:$MY_RUBY_HOME/bin:$PATH
  export RUBY_VERSION="$(ruby -v | colrm 11)"
- display_which_ruby
+ display_ruby_version
 }
 
-function display_which_ruby {
+function display_ruby_version {
  if [[ $SHELL =~ "bash" ]]; then
    echo "Using $RUBY_VERSION"
  fi
