@@ -4,6 +4,14 @@ function use_ruby_186 {
  update_path
 }
 
+function use_jruby_116 {
+# after installing JRuby:
+# ln -s /opt/jruby-1.1.6/bin/jruby /opt/jruby-1.1.6/bin/ruby
+ export MY_RUBY_HOME=/opt/jruby-1.1.6
+ export GEM_HOME=~/.gem/jruby/1.8
+ update_path
+}
+ 
 function use_ree_186 {
  export MY_RUBY_HOME=/opt/ruby-enterprise-1.8.6-20090201
  export GEM_HOME=~/.gem/ruby/1.8
