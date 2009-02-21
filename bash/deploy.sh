@@ -1,11 +1,10 @@
 # Aliases for getting around on a deployed production/staging Rails server.  
-
-if [ -z "${PROJECT_DIR}" ]; then
-	echo "You must define PROJECT_DIR in ~/.bash_profile for this to work."
+if [ -z "${PROJECT_ROOT}" ]; then
+	echo "You must define PROJECT_ROOT in ~/.bash_profile for this to work it should point at the deploy_to location of your app."
 fi
 
 # TODO add support and autodetection for /data root, maybe the /u root, and allowing user to override the root
-PROJECT_ROOT="/var/www/domains/${PROJECT_DIR}/www/app"
+
 PROJECT_CURRENT="${PROJECT_ROOT}/current"
 PROJECT_SHARED="${PROJECT_ROOT}/shared"
 

@@ -10,6 +10,15 @@ __prompt_command() {
 		echo ${sub_dir#/}
 	}
 
+
+  # http://github.com/blog/297-dirty-git-state-in-your-prompt
+  function parse_git_dirty {
+    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "${_bold}*${_normal}"
+  }
+  function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+  } 
+  
 	git_dir() {
 		base_dir=$(git rev-parse --show-cdup 2>/dev/null) || return 1
 		if [ -n "$base_dir" ]; then
@@ -19,8 +28,7 @@ __prompt_command() {
 		fi
 		sub_dir=$(git rev-parse --show-prefix)
 		sub_dir="/${sub_dir%/}"
-		ref=$(git symbolic-ref -q HEAD || git name-rev --name-only HEAD 2>/dev/null)
-		ref=${ref#refs/heads/}
+    ref=$(parse_git_branch)
 		vcs="git"
 		alias pull="git pull"
 		alias commit="git commit -v -a"

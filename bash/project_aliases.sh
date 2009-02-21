@@ -10,6 +10,9 @@ fi
 for PARENT_DIR in ${PROJECT_PARENT_DIRS[@]} ; do
   if [ -d "$PARENT_DIR" ]; then
     for PROJECT_DIR in $(ls $PARENT_DIR); do
+			if [ ! -z `which $PROJECT_DIR` ]; then
+        continue # don't set alias if there is something already a command on the path with the same name
+      fi
 			if [ -d "$PARENT_DIR/$PROJECT_DIR" ]; then
 	      alias "$PROJECT_DIR"="cd $PARENT_DIR/$PROJECT_DIR"
 			fi

@@ -46,14 +46,15 @@ alias m8prof='m ~/src/scripts/profile.d/'
 # ignore svn metadata - pipe this into xargs to do stuff
 alias no_svn="find . -path '*/.svn' -prune -o -type f -print"
 
-function findfile { find . -name \*$1\*
-}
-function orig { mv $1 orig-$1 ; cp orig-$1 $1; ls -lt $1 orig-$1
-}
-function ps? { ps -aux | grep -i $* | grep -v grep 
+# grep for a process
+function psg {
+  FIRST=`echo $1 | sed -e 's/^\(.\).*/\1/'`
+  REST=`echo $1 | sed -e 's/^.\(.*\)/\1/'`
+  ps aux | grep "[$FIRST]$REST"
 }
 
 # Mac style apache control
+# TODO init this style of aliases for darwin arch
 # alias htstart='sudo /System/Library/StartupItems/Apache/Apache start'
 # alias htrestart='sudo /System/Library/StartupItems/Apache/Apache restart'
 # alias htstop='sudo /System/Library/StartupItems/Apache/Apache stop'
@@ -69,7 +70,6 @@ alias docs='cd ~/documents'
 alias scripts='cd ~/src/scripts'
 
 alias h?="history | grep "
-alias ps?="ps aux | grep "
 
 # display battery info on your Mac
 # see http://blog.justingreer.com/post/45839440/a-tale-of-two-batteries
