@@ -1,3 +1,5 @@
+export ORIGINAL_PATH=$PATH
+
 function use_ruby_186 {
  export MY_RUBY_HOME=/System/Library/Frameworks/Ruby.framework/Versions/Current/usr
  export GEM_HOME=~/.gem/ruby/1.8
@@ -25,7 +27,7 @@ function use_ruby_191 {
 }
 
 function update_path {
- export PATH=$GEM_HOME/bin:$MY_RUBY_HOME/bin:$PATH
+ export PATH=$GEM_HOME/bin:$MY_RUBY_HOME/bin:$ORIGINAL_PATH
  export RUBY_VERSION="$(ruby -v | colrm 11)"
  display_ruby_version
 }
