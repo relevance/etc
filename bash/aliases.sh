@@ -64,6 +64,8 @@ alias htreload='sudo /etc/init.d/apache2 reload'
 alias htrestart='sudo /etc/init.d/apache2 restart'
 alias htstop='sudo /etc/init.d/apache2 stop'
 
+alias cycle_passenger='touch tmp/restart.txt'
+
 # top level folder shortcuts
 alias src='cd ~/src'
 alias docs='cd ~/documents'
