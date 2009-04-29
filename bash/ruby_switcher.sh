@@ -26,7 +26,11 @@ function install_jruby_120 {
   rm -rf jruby-1.2.0 &&
   jar xf jruby-bin-1.2.0.zip &&
   ln -sf ~/.ruby_versions/jruby-1.2.0/bin/jruby ~/.ruby_versions/jruby-1.2.0/bin/ruby &&
+  ln -sf ~/.ruby_versions/jruby-1.2.0/bin/jgem ~/.ruby_versions/jruby-1.2.0/bin/gem   &&
+  ln -sf ~/.ruby_versions/jruby-1.2.0/bin/jirb ~/.ruby_versions/jruby-1.2.0/bin/irb &&
   chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jruby &&
+  chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jgem &&
+  chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jirb &&
   rm -rf jruby-bin-1.2.zip &&
   popd
 }
