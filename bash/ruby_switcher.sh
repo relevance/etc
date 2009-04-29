@@ -32,7 +32,7 @@ function install_jruby_120 {
   chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jruby &&
   chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jgem &&
   chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jirb &&
-  rm -rf jruby-bin-1.2.zip &&
+  rm -rf ~/.ruby_versions/jruby-bin-1.2.0.zip &&
   use_jruby_120 && install_rake &&
   popd
 }
