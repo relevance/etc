@@ -7,6 +7,7 @@ function use_ruby_186 {
 }
 
 function use_jruby_116 {
+  echo "jruby 1.1.6 is deprecated.  Install jruby 1.2.0 by using install_jruby_120. Use it with use_jruby_120."
 # after installing JRuby:
 # ln -s /opt/jruby-1.1.6/bin/jruby /opt/jruby-1.1.6/bin/ruby
  export MY_RUBY_HOME=/opt/jruby-1.1.6
@@ -32,19 +33,51 @@ function install_jruby_120 {
   chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jgem &&
   chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jirb &&
   rm -rf jruby-bin-1.2.zip &&
+  use_jruby_120 && install_rake &&
   popd
 }
 
 function use_ree_186 {
- export MY_RUBY_HOME=/opt/ruby-enterprise-1.8.6-20090421
+ export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.6-20090421
  export GEM_HOME=~/.gem/ruby/1.8
  update_path
+}
+
+function install_ree_20090421 {
+  mkdir -p ~/tmp && mkdir -p ~/.ruby_versions &&
+  pushd ~/tmp
+  curl --silent -L -O http://rubyforge.org/frs/download.php/55511/ruby-enterprise-1.8.6-20090421.tar.gz &&
+  tar xzf ruby-enterprise-1.8.6-20090421.tar.gz &&
+  cd ruby-enterprise-1.8.6-20090421 &&
+  ./installer -a $HOME/.ruby_versions/ruby-enterprise-1.8.6-20090421 --dont-install-useful-gems &&
+  cd ~/tmp &&
+  rm -rf ~/tmp/ruby-enterprise-1.8.6-20090421 ruby-enterprise-1.8.6-20090421.tar.gz &&
+  use_ree_186 && install_rake &&
+  popd
 }
 
 function use_ruby_191 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby_191
  export GEM_HOME=~/.gem/ruby/1.9
  update_path
+}
+
+function install_ruby_191 {
+  mkdir -p ~/tmp && mkdir -p ~/.ruby_versions &&
+  pushd ~/tmp
+  curl --silent -L -O ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.1-p0.tar.gz &&
+  tar xzf ruby-1.9.1-p0.tar.gz &&
+  cd ruby-1.9.1-p0 &&
+  ./configure --prefix=$HOME/.ruby_versions/ruby_191 --enable-shared &&
+  make && make install &&
+  cd ~/tmp &&
+  rm -rf ruby-1.9.1-p0.tar.gz ruby-1.9.1-p0 &&
+  use_ruby_191 && install_rake &&
+  popd
+}
+
+function install_rake {
+  gem install -q --no-ri --no-rdoc rake
 }
 
 function update_path {
