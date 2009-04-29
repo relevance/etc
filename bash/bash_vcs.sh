@@ -42,7 +42,7 @@ __prompt_command() {
 		while [ -d "$base_dir/../.svn" ]; do base_dir="$base_dir/.."; done
 		base_dir=`cd $base_dir; pwd`
 		sub_dir="/$(sub_dir "${base_dir}")"
-		ref=$(svn info "$base_dir" | awk '/^URL/ { sub(".*/","",$0); r=$0 } /^Revision/ { sub("[^0-9]*","",$0); print r":"$0 }')
+		ref=`svnversion`
 		vcs="svn"
 		alias pull="svn up"
 		alias commit="svn commit"
