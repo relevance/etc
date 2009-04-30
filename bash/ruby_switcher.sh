@@ -29,11 +29,9 @@ function install_jruby_120 {
   ln -sf ~/.ruby_versions/jruby-1.2.0/bin/jruby ~/.ruby_versions/jruby-1.2.0/bin/ruby &&
   ln -sf ~/.ruby_versions/jruby-1.2.0/bin/jgem ~/.ruby_versions/jruby-1.2.0/bin/gem   &&
   ln -sf ~/.ruby_versions/jruby-1.2.0/bin/jirb ~/.ruby_versions/jruby-1.2.0/bin/irb &&
-  chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jruby &&
-  chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jgem &&
-  chmod +x ~/.ruby_versions/jruby-1.2.0/bin/jirb &&
+  chmod +x ~/.ruby_versions/jruby-1.2.0/bin/{jruby,jgem,jirb} &&
   rm -rf ~/.ruby_versions/jruby-bin-1.2.0.zip &&
-  use_jruby_120 && install_rake &&
+  use_jruby_120 && install_jruby_openssl && install_rake &&
   popd
 }
 
@@ -78,6 +76,10 @@ function install_ruby_191 {
 
 function install_rake {
   gem install -q --no-ri --no-rdoc rake
+}
+
+function install_jruby_openssl {
+  gem install -q --no-ri --no-rdoc jruby-openssl
 }
 
 function update_path {
