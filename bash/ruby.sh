@@ -2,7 +2,7 @@
 export RUBYOPT=rubygems
 
 # rubygems shortcuts (http://stephencelis.com/archive/2008/6/bashfully-yours-gem-shortcuts)
-alias gems='cd /opt/local/lib/ruby/gems/1.8/gems'
+alias gems='cd $(gem env gemdir)/gems'
 export GEMDIR=`gem env gemdir`
 gemdoc() {
   open $GEMDIR/doc/`$(which ls) $GEMDIR/doc | grep $1 | sort | tail -1`/rdoc/index.html
