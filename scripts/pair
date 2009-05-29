@@ -53,15 +53,20 @@ if authors.any?
   else
     authors = authors[0..-2].join(", ") + " and " + authors.last
   end
+
+  initials = ARGV.join('/')
   
   `git config user.name '#{authors}'`
+  `git config user.initials '#{initials}'`
   `git config user.email '#{PAIR_EMAIL}'`
   
   puts "user.name = #{authors}"
+  puts "user.initials = #{initials}"
   puts "user.email = #{PAIR_EMAIL}"
 else
   `git config --unset user.name`
+  `git config --unset user.initials`
   `git config --unset user.email`
   
-  puts "Unset user.name and user.email"
+  puts "Unset user.name, user.initials, and user.email"
 end
