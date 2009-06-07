@@ -3,6 +3,7 @@ alias sc='script/console'
 alias scprod='script/console production'
 alias ss='script/server'
 alias sg='script/generate'
+alias sdb='script/dbconsole'
 
 # testing shortcuts
 alias rt='rake --trace'
