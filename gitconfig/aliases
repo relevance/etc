@@ -4,6 +4,7 @@
 	co = checkout
 	st = status
 	br = branch
+	di = diff
 
 	# show difference between the HEAD and the index
 	staged = diff --cached
@@ -14,3 +15,5 @@
   # show staged and unstaged changes (what would be committed with "git commit -a")
   both = diff HEAD
   
+[core]
+	excludesfile = $HOME/.gitignore
