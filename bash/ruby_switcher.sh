@@ -15,6 +15,26 @@ function use_jruby_116 {
  update_path
 }
 
+function use_jruby {
+ export MY_RUBY_HOME=~/.ruby_versions/jruby-1.3.1
+ export GEM_HOME=~/.gem/jruby/1.8
+ update_path
+}
+
+function install_jruby {
+  mkdir -p ~/.ruby_versions && pushd ~/.ruby_versions &&
+  curl -O -L --silent http://dist.codehaus.org/jruby/1.3.1/jruby-bin-1.3.1.zip &&
+  rm -rf jruby-1.3.1 &&
+  jar xf jruby-bin-1.3.1.zip &&
+  ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jruby ~/.ruby_versions/jruby-1.3.1/bin/ruby &&
+  ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jgem ~/.ruby_versions/jruby-1.3.1/bin/gem   &&
+  ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jirb ~/.ruby_versions/jruby-1.3.1/bin/irb &&
+  chmod +x ~/.ruby_versions/jruby-1.3.1/bin/{jruby,jgem,jirb} &&
+  rm -rf ~/.ruby_versions/jruby-bin-1.3.1.zip &&
+  use_jruby_120 && install_jruby_openssl && install_rake &&
+  popd
+}
+
 function use_jruby_120 {
  export MY_RUBY_HOME=~/.ruby_versions/jruby-1.2.0
  export GEM_HOME=~/.gem/jruby/1.8
