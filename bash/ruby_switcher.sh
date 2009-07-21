@@ -31,7 +31,7 @@ function install_jruby {
   ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jruby ~/.ruby_versions/jruby-1.3.1/bin/ruby &&
   ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jgem ~/.ruby_versions/jruby-1.3.1/bin/gem   &&
   ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jirb ~/.ruby_versions/jruby-1.3.1/bin/irb &&
-  chmod +x ~/.ruby_versions/jruby-1.3.1/bin/{jruby,jgem,jirb} &&
+  chmod +x ~/.ruby_versions/jruby-1.3.1/bin/{jruby,jgem,jirb,jrubyc} &&
   cd ~/.ruby_versions/jruby-1.3.1/tool/nailgun && make &&
   rm -rf ~/.ruby_versions/jruby-bin-1.3.1.zip &&
   use_jruby && install_jruby_openssl && install_rake &&
