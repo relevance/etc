@@ -18,6 +18,8 @@ function use_jruby_116 {
 function use_jruby {
  export MY_RUBY_HOME=~/.ruby_versions/jruby-1.3.1
  export GEM_HOME=~/.gem/jruby/1.8
+ alias ruby_ng="jruby --ng"
+ alias ruby_ng_server="jruby --ng-server"
  update_path
 }
 
@@ -30,8 +32,9 @@ function install_jruby {
   ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jgem ~/.ruby_versions/jruby-1.3.1/bin/gem   &&
   ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jirb ~/.ruby_versions/jruby-1.3.1/bin/irb &&
   chmod +x ~/.ruby_versions/jruby-1.3.1/bin/{jruby,jgem,jirb} &&
+  cd ~/.ruby_versions/jruby-1.3.1/tool/nailgun && make &&
   rm -rf ~/.ruby_versions/jruby-bin-1.3.1.zip &&
-  use_jruby_120 && install_jruby_openssl && install_rake &&
+  use_jruby && install_jruby_openssl && install_rake &&
   popd
 }
 
