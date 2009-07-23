@@ -1,17 +1,8 @@
 export ORIGINAL_PATH=$PATH
 
-function use_ruby_186 {
+function use_leopard_ruby {
  export MY_RUBY_HOME=/System/Library/Frameworks/Ruby.framework/Versions/Current/usr
  export GEM_HOME=~/.gem/ruby/1.8
- update_path
-}
-
-function use_jruby_116 {
-  echo "jruby 1.1.6 is deprecated.  Install jruby 1.2.0 by using install_jruby_120. Use it with use_jruby_120."
-# after installing JRuby:
-# ln -s /opt/jruby-1.1.6/bin/jruby /opt/jruby-1.1.6/bin/ruby
- export MY_RUBY_HOME=/opt/jruby-1.1.6
- export GEM_HOME=~/.gem/jruby/1.8
  update_path
 }
 
@@ -78,23 +69,54 @@ function install_ree_20090421 {
 }
 
 function use_ruby_191 {
- export MY_RUBY_HOME=~/.ruby_versions/ruby_191
+ export MY_RUBY_HOME=~/.ruby_versions/ruby-1.9.1-p129
  export GEM_HOME=~/.gem/ruby/1.9
  update_path
 }
 
 function install_ruby_191 {
-  mkdir -p ~/tmp && mkdir -p ~/.ruby_versions &&
-  pushd ~/tmp
-  curl --silent -L -O ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.1-p0.tar.gz &&
-  tar xzf ruby-1.9.1-p0.tar.gz &&
-  cd ruby-1.9.1-p0 &&
-  ./configure --prefix=$HOME/.ruby_versions/ruby_191 --enable-shared &&
-  make && make install &&
-  cd ~/tmp &&
-  rm -rf ruby-1.9.1-p0.tar.gz ruby-1.9.1-p0 &&
-  use_ruby_191 && install_rake &&
-  popd
+  install_ruby_from_source "1.9" "1" "129" &&
+  use_ruby_191 && install_rake && popd
+}
+
+
+function use_ruby_186 {
+ export MY_RUBY_HOME=~/.ruby_versions/ruby-1.8.6-p369
+ export GEM_HOME=~/.gem/ruby/1.8
+ update_path
+}
+
+function install_ruby_186 {
+  install_ruby_from_source "1.8" "6" "369" &&
+  use_ruby_186 && install_rake && popd
+}
+
+function use_ruby_187 {
+ export MY_RUBY_HOME=~/.ruby_versions/ruby-1.8.7-p174
+ export GEM_HOME=~/.gem/ruby/1.8
+ update_path
+}
+
+function install_ruby_187 {
+  install_ruby_from_source "1.8" "7" "174" &&
+  use_ruby_186 && install_rake && popd
+}
+
+function install_ruby_from_source {
+  local ruby_major=$1
+  local ruby_minor=$2
+  local patch_level=$3
+  local ruby_version="ruby-$1.$2-p$patch_level"
+  local url="ftp://ftp.ruby-lang.org/pub/ruby/$ruby_major/$ruby_version.tar.gz"
+
+  mkdir -p ~/tmp && mkdir -p ~/.ruby_versions && rm -rf ~/.ruby_versions/$ruby_version &&
+  pushd ~/tmp &&
+  curl --silent -L -O $url &&
+  tar xzf $ruby_version.tar.gz &&
+  cd $ruby_version &&
+  ./configure --prefix=$HOME/.ruby_versions/$ruby_version --enable-shared &&
+  make && make install && cd ~/tmp &&
+  rm -rf $ruby_version.tar.gz $ruby_version
 }
 
 function install_rake {
@@ -119,4 +141,4 @@ function display_ruby_version {
  export RPS1=$RUBY_VERSION
 }
 
-use_ruby_186
+use_leopard_ruby
