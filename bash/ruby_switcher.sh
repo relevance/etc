@@ -99,7 +99,7 @@ function use_ruby_187 {
 
 function install_ruby_187 {
   install_ruby_from_source "1.8" "7" "174" &&
-  use_ruby_186 && install_rake && popd
+  use_ruby_187 && install_rake && popd
 }
 
 function install_ruby_from_source {
