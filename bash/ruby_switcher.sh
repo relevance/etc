@@ -50,20 +50,20 @@ function install_jruby_120 {
 }
 
 function use_ree_186 {
- export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.6-20090421
+ export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.6-20090610
  export GEM_HOME=~/.gem/ruby/1.8
  update_path
 }
 
-function install_ree_20090421 {
+function install_ree_186 {
   mkdir -p ~/tmp && mkdir -p ~/.ruby_versions &&
   pushd ~/tmp
-  curl --silent -L -O http://rubyforge.org/frs/download.php/55511/ruby-enterprise-1.8.6-20090421.tar.gz &&
-  tar xzf ruby-enterprise-1.8.6-20090421.tar.gz &&
-  cd ruby-enterprise-1.8.6-20090421 &&
-  ./installer -a $HOME/.ruby_versions/ruby-enterprise-1.8.6-20090421 --dont-install-useful-gems &&
+  curl --silent -L -O http://rubyforge.org/frs/download.php/58677/ruby-enterprise-1.8.6-20090610.tar.gz &&
+  tar xzf ruby-enterprise-1.8.6-20090610.tar.gz &&
+  cd ruby-enterprise-1.8.6-20090610 &&
+  ./installer -a $HOME/.ruby_versions/ruby-enterprise-1.8.6-20090610 --dont-install-useful-gems &&
   cd ~/tmp &&
-  rm -rf ~/tmp/ruby-enterprise-1.8.6-20090421 ruby-enterprise-1.8.6-20090421.tar.gz &&
+  rm -rf ~/tmp/ruby-enterprise-1.8.6-20090610 ruby-enterprise-1.8.6-20090610.tar.gz &&
   use_ree_186 && install_rake &&
   popd
 }
