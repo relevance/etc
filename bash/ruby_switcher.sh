@@ -70,7 +70,7 @@ function install_ree_186 {
 
 function use_ruby_191 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-1.9.1-p129
- export GEM_HOME=~/.gem/ruby/1.9
+ export GEM_HOME=~/.gem/ruby/1.9.1
  update_path
 }
 
