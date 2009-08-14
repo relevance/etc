@@ -51,7 +51,7 @@ function install_jruby_120 {
 
 function use_ree_186 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.6-20090610
- export GEM_HOME=~/.gem/ruby/1.8
+ export GEM_HOME=~/.gem/ruby-enterprise/1.8
  update_path
 }
 
