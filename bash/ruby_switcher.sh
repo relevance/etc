@@ -56,6 +56,9 @@ function use_ree_186 {
 }
 
 function install_ree_186 {
+  echo "Clearing RUBYOPT environment variable. Was set to '$RUBYOPT'."
+  export RUBYOPT=
+
   mkdir -p ~/tmp && mkdir -p ~/.ruby_versions &&
   pushd ~/tmp
   curl --silent -L -O http://rubyforge.org/frs/download.php/58677/ruby-enterprise-1.8.6-20090610.tar.gz &&
