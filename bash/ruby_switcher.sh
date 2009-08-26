@@ -67,7 +67,7 @@ function install_ree_186 {
   ./installer -a $HOME/.ruby_versions/ruby-enterprise-1.8.6-20090610 --dont-install-useful-gems &&
   cd ~/tmp &&
   rm -rf ~/tmp/ruby-enterprise-1.8.6-20090610 ruby-enterprise-1.8.6-20090610.tar.gz &&
-  use_ree_186 && install_rake &&
+  use_ree_186 && install_rubygems_from_source "1.3.5" && install_rake &&
   popd
 }
 
@@ -79,7 +79,7 @@ function use_ruby_191 {
 
 function install_ruby_191 {
   install_ruby_from_source "1.9" "1" "243" &&
-  use_ruby_191 && install_rake && popd
+  use_ruby_191 && install_rubygems_from_source "1.3.5" && install_rake && popd
 }
 
 
@@ -91,7 +91,7 @@ function use_ruby_186 {
 
 function install_ruby_186 {
   install_ruby_from_source "1.8" "6" "369" &&
-  use_ruby_186 && install_rake && popd
+  use_ruby_186 && install_rubygems_from_source "1.3.5" && install_rake && popd
 }
 
 function use_ruby_187 {
@@ -102,7 +102,7 @@ function use_ruby_187 {
 
 function install_ruby_187 {
   install_ruby_from_source "1.8" "7" "174" &&
-  use_ruby_187 && install_rake && popd
+  use_ruby_187 && install_rubygems_from_source "1.3.5" && install_rake && popd
 }
 
 function install_ruby_from_source {
@@ -120,6 +120,20 @@ function install_ruby_from_source {
   ./configure --prefix=$HOME/.ruby_versions/$ruby_version --enable-shared &&
   make && make install && cd ~/tmp &&
   rm -rf $ruby_version.tar.gz $ruby_version
+}
+
+function install_rubygems_from_source {
+    local rubygems_version="rubygems-$1"
+    local url="http://files.rubyforge.vm.bytemark.co.uk/rubygems/$rubygems_version.tgz"
+
+    mkdir -p ~/tmp &&
+    pushd ~/tmp &&
+    curl --silent -L -O $url &&
+    tar xzf $rubygems_version.tgz &&
+    cd $rubygems_version &&
+    ruby setup.rb -q && cd ~/tmp &&
+    rm -rf $rubygems_version.tgz $rubygems_version &&
+    popd
 }
 
 function install_rake {
