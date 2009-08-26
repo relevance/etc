@@ -3,12 +3,14 @@ export ORIGINAL_PATH=$PATH
 function use_leopard_ruby {
  export MY_RUBY_HOME=/System/Library/Frameworks/Ruby.framework/Versions/Current/usr
  export GEM_HOME=~/.gem/ruby/1.8
+ export GEM_PATH="~/.gem/ruby/1.8:/Library/Ruby/Gems/1.8:/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8"
  update_path
 }
 
 function use_jruby {
  export MY_RUBY_HOME=~/.ruby_versions/jruby-1.3.1
  export GEM_HOME=~/.gem/jruby/1.8
+ export GEM_PATH=~/.gem/jruby/1.8
  alias ruby_ng="jruby --ng"
  alias ruby_ng_server="jruby --ng-server"
  update_path
@@ -32,6 +34,7 @@ function install_jruby {
 function use_jruby_120 {
  export MY_RUBY_HOME=~/.ruby_versions/jruby-1.2.0
  export GEM_HOME=~/.gem/jruby/1.8
+ export GEM_PATH=~/.gem/jruby/1.8
  update_path
 }
 
@@ -52,6 +55,7 @@ function install_jruby_120 {
 function use_ree_186 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.6-20090610
  export GEM_HOME=~/.gem/ruby-enterprise/1.8
+ export GEM_PATH=~/.gem/ruby-enterprise/1.8
  update_path
 }
 
@@ -74,6 +78,7 @@ function install_ree_186 {
 function use_ruby_191 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-1.9.1-p243
  export GEM_HOME=~/.gem/ruby/1.9.1
+ export GEM_PATH=~/.gem/ruby/1.9.1
  update_path
 }
 
@@ -86,6 +91,7 @@ function install_ruby_191 {
 function use_ruby_186 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-1.8.6-p369
  export GEM_HOME=~/.gem/ruby/1.8
+ export GEM_PATH=~/.gem/ruby/1.8
  update_path
 }
 
@@ -97,6 +103,7 @@ function install_ruby_186 {
 function use_ruby_187 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-1.8.7-p174
  export GEM_HOME=~/.gem/ruby/1.8
+ export GEM_PATH=~/.gem/ruby/1.8
  update_path
 }
 
