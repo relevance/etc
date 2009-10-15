@@ -77,7 +77,8 @@ function install_ree_186 {
 
 function use_ree_187 {
   export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.7-20090928 
-  export GEM_HOME=~/.gem/ruby/1.8 
+  export GEM_HOME=~/.gem/ruby/1.8.7 
+  export GEM_PATH=~/.gem/ruby/1.8.7 
   update_path 
 }
 
@@ -119,8 +120,8 @@ function install_ruby_186 {
 
 function use_ruby_187 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-1.8.7-p174
- export GEM_HOME=~/.gem/ruby/1.8
- export GEM_PATH=~/.gem/ruby/1.8
+ export GEM_HOME=~/.gem/ruby/1.8.7
+ export GEM_PATH=~/.gem/ruby/1.8.7
  update_path
 }
 
