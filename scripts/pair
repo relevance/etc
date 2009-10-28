@@ -15,6 +15,7 @@ PAIR_EMAIL = "pair@thinkrelevance.com"
 
 AUTHORS = {
   "ab" => "Aaron Bedra",
+  "ca" => "Corey Haines",
   "ch" => "Chad Humphries",
   "dm" => "Don Mullen",
   "gv" => "Glenn Vanderburg",
