@@ -5,7 +5,6 @@ alias rm='rm -i'
 alias :='cd ..'
 alias ::='cd ../..'
 alias :::='cd ../../..'
-alias v='vmstat'
 alias md=mkdir
 
 # Need to do this so you use backspace in screen...I have no idea why
@@ -21,30 +20,12 @@ alias t500='tail -n 500'
 alias t1000='tail -n 1000'
 alias t2000='tail -n 2000'
 
-# svn
-alias sup='svn up'
-alias sst='svn st'
-alias sstu='svn st -u'
-alias sci='svn ci -m'
-alias sdiff='svn diff | colordiff'
-alias smate='svn diff | mate && svn ci'
-alias sadd="sst | grep '?' | cut -c5- | xargs svn add"
-
 # editing shortcuts
 alias m='mate'
 alias e='emacs'
 alias erc='e /etc/bashrc'
 alias newrc='. /etc/bashrc'
-alias rsync_nosvn="rsync --exclude=.svn -r "
 alias rsync_novc="rsync --exclude=.svn --exclude=.git -r "
-
-alias sourceit='. ~/src/scripts/profile.d/00_startup.sh'
-
-# mate shortcuts
-alias m8prof='m ~/src/scripts/profile.d/'
-
-# ignore svn metadata - pipe this into xargs to do stuff
-alias no_svn="find . -path '*/.svn' -prune -o -type f -print"
 
 # grep for a process
 function psg {
