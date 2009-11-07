@@ -76,7 +76,7 @@ function install_ree_186 {
 }
 
 function use_ree_187 {
-  export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.7-20090928 
+  export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.7-2009.10
   export GEM_HOME=~/.gem/ruby/1.8.7 
   export GEM_PATH=~/.gem/ruby/1.8.7 
   update_path 
@@ -84,14 +84,13 @@ function use_ree_187 {
 
 function install_ree_187 {
   mkdir -p ~/tmp && mkdir -p ~/.ruby_versions && pushd ~/tmp 
-  curl --silent -L -O http://rubyforge.org/frs/download.php/64475/ruby-enterprise-1.8.7-20090928.tar.gz && 
-  tar xzf ruby-enterprise-1.8.7-20090928.tar.gz && cd ruby-enterprise-1.8.7-20090928 && 
-  ./installer -a $HOME/.ruby_versions/ruby-enterprise-1.8.7-20090928 --dont-install-useful-gems && 
-  cd ~/tmp && rm -rf ~/tmp/ruby-enterprise-1.8.7-20090928 ruby-enterprise-1.8.7-20090928.tar.gz && 
+  curl --silent -L -O http://rubyforge.org/frs/download.php/66162/ruby-enterprise-1.8.7-2009.10.tar.gz && 
+  tar xzf ruby-enterprise-1.8.7-2009.10.tar.gz && cd ruby-enterprise-1.8.7-2009.10 && 
+  ./installer -a $HOME/.ruby_versions/ruby-enterprise-1.8.7-2009.10 --dont-install-useful-gems && 
+  cd ~/tmp && rm -rf ~/tmp/ruby-enterprise-1.8.7-2009.10 ruby-enterprise-1.8.7-2009.10.tar.gz && 
   use_ree_187 && install_rake && 
   popd
 }
-
 
 function use_ruby_191 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-1.9.1-p243
