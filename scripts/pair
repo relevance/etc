@@ -28,7 +28,8 @@ AUTHORS = {
   "ma" => "Muness Alrubaie",
   "na" => "Nick Ang",
   "rs" => "Rob Sanheim",
-  "sh" => "Stuart Halloway"
+  "sf" => "Shay Frendt",  
+  "sh" => "Stuart Halloway",
 }
 
 ## End of configuration
