@@ -3,7 +3,7 @@ export ORIGINAL_PATH=$PATH
 function use_leopard_ruby {
  export MY_RUBY_HOME=/System/Library/Frameworks/Ruby.framework/Versions/Current/usr
  export GEM_HOME=~/.gem/ruby/1.8
- export GEM_PATH="~/.gem/ruby/1.8:/Library/Ruby/Gems/1.8:/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8"
+ export GEM_PATH=~/.gem/ruby/1.8:/Library/Ruby/Gems/1.8:/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8
  update_path
 }
 
