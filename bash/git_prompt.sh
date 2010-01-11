@@ -44,7 +44,7 @@ function git_branch_and_user {
 # 
 #   git config --global user.initials 'jr'
 function git_user_initials {
-  git config --get user.initials
+  git config --get user.initials || echo "-solo-"
 }
 
 function prompt_func() {
