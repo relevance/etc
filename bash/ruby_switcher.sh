@@ -8,6 +8,27 @@ function use_leopard_ruby {
 }
 
 function use_jruby {
+ export MY_RUBY_HOME=~/.ruby_versions/jruby-1.4.0
+ export GEM_HOME=~/.gem/jruby/1.8
+ export GEM_PATH=~/.gem/jruby/1.8
+ update_path
+}
+
+function install_jruby {
+  mkdir -p ~/.ruby_versions && pushd ~/.ruby_versions &&
+  curl -O -L --silent http://jruby.kenai.com/downloads/1.4.0/jruby-bin-1.4.0.zip &&
+  rm -rf jruby-1.4.0 &&
+  jar xf jruby-bin-1.4.0.zip &&
+  ln -sf ~/.ruby_versions/jruby-1.4.0/bin/jruby ~/.ruby_versions/jruby-1.4.0/bin/ruby &&
+  ln -sf ~/.ruby_versions/jruby-1.4.0/bin/jgem ~/.ruby_versions/jruby-1.4.0/bin/gem   &&
+  ln -sf ~/.ruby_versions/jruby-1.4.0/bin/jirb ~/.ruby_versions/jruby-1.4.0/bin/irb &&
+  chmod +x ~/.ruby_versions/jruby-1.4.0/bin/{jruby,jgem,jirb,jrubyc} &&
+  rm -rf ~/.ruby_versions/jruby-bin-1.4.0.zip &&
+  use_jruby && install_jruby_openssl && install_rake &&
+  popd
+}
+
+function use_jruby_131 {
  export MY_RUBY_HOME=~/.ruby_versions/jruby-1.3.1
  export GEM_HOME=~/.gem/jruby/1.8
  export GEM_PATH=~/.gem/jruby/1.8
@@ -16,7 +37,7 @@ function use_jruby {
  update_path
 }
 
-function install_jruby {
+function install_jruby_131 {
   mkdir -p ~/.ruby_versions && pushd ~/.ruby_versions &&
   curl -O -L --silent http://dist.codehaus.org/jruby/1.3.1/jruby-bin-1.3.1.zip &&
   rm -rf jruby-1.3.1 &&
