@@ -3,12 +3,14 @@ export ORIGINAL_PATH=$PATH
 function use_leopard_ruby {
  export MY_RUBY_HOME=/System/Library/Frameworks/Ruby.framework/Versions/Current/usr
  export GEM_HOME=~/.gem/ruby/1.8
+ export GEM_PATH="~/.gem/ruby/1.8:/Library/Ruby/Gems/1.8:/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8"
  update_path
 }
 
 function use_jruby {
  export MY_RUBY_HOME=~/.ruby_versions/jruby-1.3.1
  export GEM_HOME=~/.gem/jruby/1.8
+ export GEM_PATH=~/.gem/jruby/1.8
  alias ruby_ng="jruby --ng"
  alias ruby_ng_server="jruby --ng-server"
  update_path
@@ -32,6 +34,7 @@ function install_jruby {
 function use_jruby_120 {
  export MY_RUBY_HOME=~/.ruby_versions/jruby-1.2.0
  export GEM_HOME=~/.gem/jruby/1.8
+ export GEM_PATH=~/.gem/jruby/1.8
  update_path
 }
 
@@ -51,11 +54,15 @@ function install_jruby_120 {
 
 function use_ree_186 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.6-20090610
- export GEM_HOME=~/.gem/ruby/1.8
+ export GEM_HOME=~/.gem/ruby-enterprise/1.8
+ export GEM_PATH=~/.gem/ruby-enterprise/1.8
  update_path
 }
 
 function install_ree_186 {
+  echo "Clearing RUBYOPT environment variable. Was set to '$RUBYOPT'."
+  export RUBYOPT=
+
   mkdir -p ~/tmp && mkdir -p ~/.ruby_versions &&
   pushd ~/tmp
   curl --silent -L -O http://rubyforge.org/frs/download.php/58677/ruby-enterprise-1.8.6-20090610.tar.gz &&
@@ -64,42 +71,45 @@ function install_ree_186 {
   ./installer -a $HOME/.ruby_versions/ruby-enterprise-1.8.6-20090610 --dont-install-useful-gems &&
   cd ~/tmp &&
   rm -rf ~/tmp/ruby-enterprise-1.8.6-20090610 ruby-enterprise-1.8.6-20090610.tar.gz &&
-  use_ree_186 && install_rake &&
+  use_ree_186 && install_rubygems_from_source "1.3.5" && install_rake &&
   popd
 }
 
 function use_ruby_191 {
- export MY_RUBY_HOME=~/.ruby_versions/ruby-1.9.1-p129
- export GEM_HOME=~/.gem/ruby/1.9
+ export MY_RUBY_HOME=~/.ruby_versions/ruby-1.9.1-p243
+ export GEM_HOME=~/.gem/ruby/1.9.1
+ export GEM_PATH=~/.gem/ruby/1.9.1
  update_path
 }
 
 function install_ruby_191 {
-  install_ruby_from_source "1.9" "1" "129" &&
-  use_ruby_191 && install_rake && popd
+  install_ruby_from_source "1.9" "1" "243" &&
+  use_ruby_191 && install_rubygems_from_source "1.3.5" && install_rake && popd
 }
 
 
 function use_ruby_186 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-1.8.6-p369
  export GEM_HOME=~/.gem/ruby/1.8
+ export GEM_PATH=~/.gem/ruby/1.8
  update_path
 }
 
 function install_ruby_186 {
   install_ruby_from_source "1.8" "6" "369" &&
-  use_ruby_186 && install_rake && popd
+  use_ruby_186 && install_rubygems_from_source "1.3.5" && install_rake && popd
 }
 
 function use_ruby_187 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-1.8.7-p174
  export GEM_HOME=~/.gem/ruby/1.8
+ export GEM_PATH=~/.gem/ruby/1.8
  update_path
 }
 
 function install_ruby_187 {
   install_ruby_from_source "1.8" "7" "174" &&
-  use_ruby_187 && install_rake && popd
+  use_ruby_187 && install_rubygems_from_source "1.3.5" && install_rake && popd
 }
 
 function install_ruby_from_source {
@@ -117,6 +127,20 @@ function install_ruby_from_source {
   ./configure --prefix=$HOME/.ruby_versions/$ruby_version --enable-shared &&
   make && make install && cd ~/tmp &&
   rm -rf $ruby_version.tar.gz $ruby_version
+}
+
+function install_rubygems_from_source {
+    local rubygems_version="rubygems-$1"
+    local url="http://files.rubyforge.vm.bytemark.co.uk/rubygems/$rubygems_version.tgz"
+
+    mkdir -p ~/tmp &&
+    pushd ~/tmp &&
+    curl --silent -L -O $url &&
+    tar xzf $rubygems_version.tgz &&
+    cd $rubygems_version &&
+    ruby setup.rb -q && cd ~/tmp &&
+    rm -rf $rubygems_version.tgz $rubygems_version &&
+    popd
 }
 
 function install_rake {
