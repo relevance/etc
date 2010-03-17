@@ -15,17 +15,27 @@ PAIR_EMAIL = "pair@thinkrelevance.com"
 
 AUTHORS = {
   "ab" => "Aaron Bedra",
+  "ca" => "Corey Haines",
   "ch" => "Chad Humphries",
+  "cr" => "Chris Redinger",
+  "dc" => "David Chelimsky",
+  "de" => "David Eisinger",
   "dm" => "Don Mullen",
   "gv" => "Glenn Vanderburg",
+  "jl" => "Joseph Leddy",
   "jm" => "Jess Martin",
   "jg" => "Justin Gehtland",
+  "jp" => "Jared Pace",
   "jr" => "Jason Rudolph",
   "lk" => "Larry Karnowski",
   "ma" => "Muness Alrubaie",
   "na" => "Nick Ang",
   "rs" => "Rob Sanheim",
-  "sh" => "Stuart Halloway"
+  "sf" => "Shay Frendt",  
+  "sh" => "Stuart Halloway",
+  "vf" => "Jim Van Fleet",
+  "tj" => "Tyler Jennings",
+  "bm" => "Brian Marick"
 }
 
 ## End of configuration

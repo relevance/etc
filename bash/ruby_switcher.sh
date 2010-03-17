@@ -8,47 +8,23 @@ function use_leopard_ruby {
 }
 
 function use_jruby {
- export MY_RUBY_HOME=~/.ruby_versions/jruby-1.3.1
+ export MY_RUBY_HOME=~/.ruby_versions/jruby-1.4.0
  export GEM_HOME=~/.gem/jruby/1.8
  export GEM_PATH=~/.gem/jruby/1.8
- alias ruby_ng="jruby --ng"
- alias ruby_ng_server="jruby --ng-server"
  update_path
 }
 
 function install_jruby {
   mkdir -p ~/.ruby_versions && pushd ~/.ruby_versions &&
-  curl -O -L --silent http://dist.codehaus.org/jruby/1.3.1/jruby-bin-1.3.1.zip &&
-  rm -rf jruby-1.3.1 &&
-  jar xf jruby-bin-1.3.1.zip &&
-  ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jruby ~/.ruby_versions/jruby-1.3.1/bin/ruby &&
-  ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jgem ~/.ruby_versions/jruby-1.3.1/bin/gem   &&
-  ln -sf ~/.ruby_versions/jruby-1.3.1/bin/jirb ~/.ruby_versions/jruby-1.3.1/bin/irb &&
-  chmod +x ~/.ruby_versions/jruby-1.3.1/bin/{jruby,jgem,jirb,jrubyc} &&
-  cd ~/.ruby_versions/jruby-1.3.1/tool/nailgun && make &&
-  rm -rf ~/.ruby_versions/jruby-bin-1.3.1.zip &&
+  curl -O -L --silent http://jruby.kenai.com/downloads/1.4.0/jruby-bin-1.4.0.zip &&
+  rm -rf jruby-1.4.0 &&
+  jar xf jruby-bin-1.4.0.zip &&
+  ln -sf ~/.ruby_versions/jruby-1.4.0/bin/jruby ~/.ruby_versions/jruby-1.4.0/bin/ruby &&
+  ln -sf ~/.ruby_versions/jruby-1.4.0/bin/jgem ~/.ruby_versions/jruby-1.4.0/bin/gem   &&
+  ln -sf ~/.ruby_versions/jruby-1.4.0/bin/jirb ~/.ruby_versions/jruby-1.4.0/bin/irb &&
+  chmod +x ~/.ruby_versions/jruby-1.4.0/bin/{jruby,jgem,jirb,jrubyc} &&
+  rm -rf ~/.ruby_versions/jruby-bin-1.4.0.zip &&
   use_jruby && install_jruby_openssl && install_rake &&
-  popd
-}
-
-function use_jruby_120 {
- export MY_RUBY_HOME=~/.ruby_versions/jruby-1.2.0
- export GEM_HOME=~/.gem/jruby/1.8
- export GEM_PATH=~/.gem/jruby/1.8
- update_path
-}
-
-function install_jruby_120 {
-  mkdir -p ~/.ruby_versions && pushd ~/.ruby_versions &&
-  curl -O -L --silent http://dist.codehaus.org/jruby/1.2.0/jruby-bin-1.2.0.zip &&
-  rm -rf jruby-1.2.0 &&
-  jar xf jruby-bin-1.2.0.zip &&
-  ln -sf ~/.ruby_versions/jruby-1.2.0/bin/jruby ~/.ruby_versions/jruby-1.2.0/bin/ruby &&
-  ln -sf ~/.ruby_versions/jruby-1.2.0/bin/jgem ~/.ruby_versions/jruby-1.2.0/bin/gem   &&
-  ln -sf ~/.ruby_versions/jruby-1.2.0/bin/jirb ~/.ruby_versions/jruby-1.2.0/bin/irb &&
-  chmod +x ~/.ruby_versions/jruby-1.2.0/bin/{jruby,jgem,jirb} &&
-  rm -rf ~/.ruby_versions/jruby-bin-1.2.0.zip &&
-  use_jruby_120 && install_jruby_openssl && install_rake &&
   popd
 }
 
@@ -72,6 +48,23 @@ function install_ree_186 {
   cd ~/tmp &&
   rm -rf ~/tmp/ruby-enterprise-1.8.6-20090610 ruby-enterprise-1.8.6-20090610.tar.gz &&
   use_ree_186 && install_rubygems_from_source "1.3.5" && install_rake &&
+  popd
+}
+
+function use_ree_187 {
+  export MY_RUBY_HOME=~/.ruby_versions/ruby-enterprise-1.8.7-2009.10
+  export GEM_HOME=~/.gem/ruby/1.8.7 
+  export GEM_PATH=~/.gem/ruby/1.8.7 
+  update_path 
+}
+
+function install_ree_187 {
+  mkdir -p ~/tmp && mkdir -p ~/.ruby_versions && pushd ~/tmp 
+  curl --silent -L -O http://rubyforge.org/frs/download.php/66162/ruby-enterprise-1.8.7-2009.10.tar.gz && 
+  tar xzf ruby-enterprise-1.8.7-2009.10.tar.gz && cd ruby-enterprise-1.8.7-2009.10 && 
+  ./installer -a $HOME/.ruby_versions/ruby-enterprise-1.8.7-2009.10 && 
+  cd ~/tmp && rm -rf ~/tmp/ruby-enterprise-1.8.7-2009.10 ruby-enterprise-1.8.7-2009.10.tar.gz && 
+  use_ree_187 && install_rubygems_from_source "1.3.6" && install_rake &&
   popd
 }
 
@@ -102,14 +95,14 @@ function install_ruby_186 {
 
 function use_ruby_187 {
  export MY_RUBY_HOME=~/.ruby_versions/ruby-1.8.7-p174
- export GEM_HOME=~/.gem/ruby/1.8
- export GEM_PATH=~/.gem/ruby/1.8
+ export GEM_HOME=~/.gem/ruby/1.8.7
+ export GEM_PATH=~/.gem/ruby/1.8.7
  update_path
 }
 
 function install_ruby_187 {
   install_ruby_from_source "1.8" "7" "174" &&
-  use_ruby_187 && install_rubygems_from_source "1.3.5" && install_rake && popd
+  use_ruby_187 && install_rubygems_from_source "1.3.6" && install_rake && popd
 }
 
 function install_ruby_from_source {
