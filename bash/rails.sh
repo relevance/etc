@@ -25,4 +25,4 @@ alias mroutes='rroutes | mate'
 alias rmate='mate *.rb *.yml *.watchr Rakefile README Gemfile *.markdown *.md app bin config doc examples db lib public script spec test stories features'
 # capistrano
 alias csd='cap staging deploy'
-
+alias be='bundle exec'
