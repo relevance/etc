@@ -5,7 +5,6 @@ alias rm='rm -i'
 alias :='cd ..'
 alias ::='cd ../..'
 alias :::='cd ../../..'
-alias md=mkdir
 
 # Need to do this so you use backspace in screen...I have no idea why
 alias screen='TERM=screen screen'
@@ -30,12 +29,6 @@ function psg {
   REST=`echo $1 | sed -e 's/^.\(.*\)/\1/'`
   ps aux | grep "[$FIRST]$REST"
 }
-
-# Mac style apache control
-# TODO init this style of aliases for darwin arch
-# alias htstart='sudo /System/Library/StartupItems/Apache/Apache start'
-# alias htrestart='sudo /System/Library/StartupItems/Apache/Apache restart'
-# alias htstop='sudo /System/Library/StartupItems/Apache/Apache stop'
 
 # Debian style apache control
 alias htreload='sudo /etc/init.d/apache2 reload'
