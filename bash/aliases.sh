@@ -19,8 +19,6 @@ alias tf='tail -f -n 100'
 # editing shortcuts
 alias m='mate'
 alias e='emacs'
-alias erc='e /etc/bashrc'
-alias newrc='. /etc/bashrc'
 alias rsync_novc="rsync --exclude=.svn --exclude=.git -r "
 
 # grep for a process
