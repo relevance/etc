@@ -1,10 +1,10 @@
 # general shortcuts
-alias c='cd '
+# alias c='cd '
 alias mv='mv -i'
 alias rm='rm -i'
-alias :='cd ..'
-alias ::='cd ../..'
-alias :::='cd ../../..'
+# alias :='cd ..'
+# alias ::='cd ../..'
+# alias :::='cd ../../..'
 
 # Need to do this so you use backspace in screen...I have no idea why
 alias screen='TERM=screen screen'
