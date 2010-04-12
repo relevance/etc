@@ -1,10 +1,10 @@
 # general shortcuts
-alias c='cd '
+# alias c='cd '
 alias mv='mv -i'
 alias rm='rm -i'
-alias :='cd ..'
-alias ::='cd ../..'
-alias :::='cd ../../..'
+# alias :='cd ..'
+# alias ::='cd ../..'
+# alias :::='cd ../../..'
 
 # Need to do this so you use backspace in screen...I have no idea why
 alias screen='TERM=screen screen'
@@ -19,8 +19,6 @@ alias tf='tail -f -n 100'
 # editing shortcuts
 alias m='mate'
 alias e='emacs'
-alias erc='e /etc/bashrc'
-alias newrc='. /etc/bashrc'
 alias rsync_novc="rsync --exclude=.svn --exclude=.git -r "
 
 # grep for a process
