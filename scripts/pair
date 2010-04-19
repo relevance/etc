@@ -15,16 +15,10 @@ PAIR_EMAIL = "pair@thinkrelevance.com"
 
 AUTHORS = {
   "ab" => "Aaron Bedra",
-  "ca" => "Corey Haines",
   "ch" => "Chad Humphries",
   "cr" => "Chris Redinger",
-  "cn" => "Clinton Nixon",
-  "dc" => "David Chelimsky",
-  "de" => "David Eisinger",
   "dm" => "Don Mullen",
-  "do" => "Duff OMelia",
   "gv" => "Glenn Vanderburg",
-  "jl" => "Joseph Leddy",
   "jm" => "Jess Martin",
   "jg" => "Justin Gehtland",
   "jp" => "Jared Pace",
@@ -32,13 +26,10 @@ AUTHORS = {
   "lk" => "Larry Karnowski",
   "ma" => "Muness Alrubaie",
   "mp" => "Michael Parenteau",
-  "na" => "Nick Ang",
   "rs" => "Rob Sanheim",
   "sf" => "Shay Frendt",  
   "sh" => "Stuart Halloway",
-  "vf" => "Jim Van Fleet",
-  "tj" => "Tyler Jennings",
-  "bm" => "Brian Marick"
+  "jd" => "Jon Distad"
 }
 
 ## End of configuration
