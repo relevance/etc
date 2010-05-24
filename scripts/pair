@@ -31,7 +31,7 @@ AUTHORS = {
   "sf" => "Shay Frendt",  
   "sh" => "Stuart Halloway",
   "jd" => "Jon Distad",
-  "Jf" => "Jeff Felchner"
+  "jf" => "Jeff Felchner"
 }
 
 ## End of configuration
