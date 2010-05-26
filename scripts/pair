@@ -31,7 +31,8 @@ AUTHORS = {
   "rs" => "Rob Sanheim",
   "sf" => "Shay Frendt",  
   "sh" => "Stuart Halloway",
-  "jd" => "Jon Distad"
+  "jd" => "Jon Distad",
+  "jf" => "Jeff Felchner"
 }
 
 ## End of configuration
