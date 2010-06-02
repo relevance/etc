@@ -18,6 +18,7 @@ AUTHORS = {
   "bv" => "Ben Vandgrift",
   "ch" => "Chad Humphries",
   "cr" => "Chris Redinger",
+  "dl" => "David Liebke",
   "dm" => "Don Mullen",
   "do" => "Duff OMelia",
   "gv" => "Glenn Vanderburg",
@@ -31,6 +32,7 @@ AUTHORS = {
   "rs" => "Rob Sanheim",
   "sf" => "Shay Frendt",  
   "sh" => "Stuart Halloway",
+  "ss" => "Stuart Sierra",
   "jd" => "Jon Distad",
   "jf" => "Jeff Felchner"
 }
