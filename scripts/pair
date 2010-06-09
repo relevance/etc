@@ -34,7 +34,8 @@ AUTHORS = {
   "sh" => "Stuart Halloway",
   "ss" => "Stuart Sierra",
   "jd" => "Jon Distad",
-  "jf" => "Jeff Felchner"
+  "jf" => "Jeff Felchner",
+  "ad" => "Alan Dipert"
 }
 
 ## End of configuration
