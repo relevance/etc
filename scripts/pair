@@ -16,6 +16,7 @@ PAIR_EMAIL = "pair@thinkrelevance.com"
 AUTHORS = {
   "ab" => "Aaron Bedra",
   "ad" => "Alan Dipert",
+  "ar" => "Alex Redington",
   "bv" => "Ben Vandgrift",
   "ca" => "Craig Andera",
   "ch" => "Chad Humphries",
