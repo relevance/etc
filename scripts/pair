@@ -39,8 +39,7 @@ AUTHORS = {
   "rs" => "Rob Sanheim",
   "sf" => "Shay Frendt",  
   "sh" => "Stuart Halloway",
-  "ss" => "Stuart Sierra",
-  "z" => "Zak Tamsen",
+  "ss" => "Stuart Sierra"
 }
 
 ## End of configuration
