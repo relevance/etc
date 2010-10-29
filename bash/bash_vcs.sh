@@ -88,13 +88,16 @@ __prompt_command() {
     working_on=""
 	fi
 
-	last_command=$(history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g")
+	last_command=$(history 10 | grep -v exit | tail -n 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g")
 	__tab_title="$working_on[$last_command]"
 	__pretty_pwd="${PWD/$HOME/~}"
+	hostname=`hostname -s`
+  echo -e "\e]1;$__tab_title\007\c"
+  echo -e "\e]2;$hostname::$__pretty_pwd"
 }
 
 PROMPT_COMMAND=__prompt_command
-PS1='\[\e]2;\h::$__pretty_pwd\a\e]1;$__tab_title\a\]\u:$__vcs_prefix\[${_bold}\]${__vcs_base_dir}\[${_normal}\]${__vcs_ref}\[${_bold}\]${__vcs_sub_dir}\[${_normal}\]\$ '
+PS1='\a\u:$__vcs_prefix\[$_bold\]${__vcs_base_dir}\[$_normal\]${__vcs_ref}\[$_bold\]${__vcs_sub_dir}\[$_normal\]\$ '
 
 # Show the currently running command in the terminal title:
 # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
