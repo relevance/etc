@@ -10,13 +10,21 @@ __prompt_command() {
 		echo ${sub_dir#/}
 	}
 
-
-  # http://github.com/blog/297-dirty-git-state-in-your-prompt
+  # http://gist.github.com/48207
+  function parse_git_deleted {
+    [[ $(git status 2> /dev/null | grep deleted:) != "" ]] && echo "-"
+  }
+  function parse_git_added {
+    [[ $(git status 2> /dev/null | grep "Untracked files:") != "" ]] && echo '+'
+  }
+  function parse_git_modified {
+    [[ $(git status 2> /dev/null | grep modified:) != "" ]] && echo "*"
+  }
   function parse_git_dirty {
-    [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "${_bold}*${_normal}"
+    echo "$_bold$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)$_normal"
   }
   function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+    echo `git branch --no-color 2> /dev/null | awk '{print $2}'`$(parse_git_dirty)
   } 
   
 	git_dir() {
