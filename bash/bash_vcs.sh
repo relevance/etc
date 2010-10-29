@@ -11,18 +11,14 @@ function parse_git_added {
 function parse_git_modified {
   [[ $(git status 2> /dev/null | grep modified:) != "" ]] && echo "*"
 }
-function git_dirty_state {
-  echo "$_bold$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)$_normal"
+function git_state_indicators {
+  echo "$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)"
 }
 
-function git_branch {
-
-  git rev-parse --git-dir &> /dev/null
+function git_divergence_indicator {
   git_status="$(git status 2> /dev/null)"
-  branch_pattern="^# On branch ([^${IFS}]*)"
   remote_pattern="# Your branch is (.*) of"
   diverge_pattern="# Your branch and (.*) have diverged"
-  # add an else if or two here if you want to get more specific
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
     if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
       remote="↑"
@@ -33,9 +29,15 @@ function git_branch {
   if [[ ${git_status} =~ ${diverge_pattern} ]]; then
     remote="↕"
   fi
+  echo $remote
+}
+
+function git_branch_and_indicator {
+  git_status="$(git status 2> /dev/null)"
+  branch_pattern="^# On branch ([^${IFS}]*)"
   if [[ ${git_status} =~ ${branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
-    echo "${branch}${ORANGE}${remote}$(git_dirty_state)"
+    echo "${branch}$_bold$(git_state_indicators)$(git_divergence_indicator)$_normal"
   fi
 }
 
@@ -57,7 +59,7 @@ __prompt_command() {
 		fi
 		sub_dir=$(git rev-parse --show-prefix)
 		sub_dir="/${sub_dir%/}"
-    ref=$(git_branch)
+    ref=$(git_branch_and_indicator)
 		vcs="git"
 		alias pull="git pull"
 		alias commit="git commit -v -a"
