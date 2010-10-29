@@ -88,7 +88,7 @@ __prompt_command() {
     working_on=""
 	fi
 
-	last_command=$(history 10 | grep -v exit | tail -n 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g")
+	last_command=$(history 5 | awk '{print $2}' | grep -v "^exit$" | tail -n 1)
 	__tab_title="$working_on[$last_command]"
 	__pretty_pwd="${PWD/$HOME/~}"
 	hostname=`hostname -s`
