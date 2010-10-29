@@ -1,6 +1,44 @@
 _bold=$(tput bold)
 _normal=$(tput sgr0)
 
+# http://gist.github.com/48207
+function parse_git_deleted {
+  [[ $(git status 2> /dev/null | grep deleted:) != "" ]] && echo "-"
+}
+function parse_git_added {
+  [[ $(git status 2> /dev/null | grep "Untracked files:") != "" ]] && echo '+'
+}
+function parse_git_modified {
+  [[ $(git status 2> /dev/null | grep modified:) != "" ]] && echo "*"
+}
+function git_dirty_state {
+  echo "$_bold$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)$_normal"
+}
+
+function git_branch {
+
+  git rev-parse --git-dir &> /dev/null
+  git_status="$(git status 2> /dev/null)"
+  branch_pattern="^# On branch ([^${IFS}]*)"
+  remote_pattern="# Your branch is (.*) of"
+  diverge_pattern="# Your branch and (.*) have diverged"
+  # add an else if or two here if you want to get more specific
+  if [[ ${git_status} =~ ${remote_pattern} ]]; then
+    if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
+      remote="↑"
+    else
+      remote="↓"
+    fi
+  fi
+  if [[ ${git_status} =~ ${diverge_pattern} ]]; then
+    remote="↕"
+  fi
+  if [[ ${git_status} =~ ${branch_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
+    echo "${branch}${ORANGE}${remote}$(git_dirty_state)"
+  fi
+}
+
 __prompt_command() {
 	local vcs base_dir sub_dir ref last_command
 	sub_dir() {
@@ -10,23 +48,6 @@ __prompt_command() {
 		echo ${sub_dir#/}
 	}
 
-  # http://gist.github.com/48207
-  function parse_git_deleted {
-    [[ $(git status 2> /dev/null | grep deleted:) != "" ]] && echo "-"
-  }
-  function parse_git_added {
-    [[ $(git status 2> /dev/null | grep "Untracked files:") != "" ]] && echo '+'
-  }
-  function parse_git_modified {
-    [[ $(git status 2> /dev/null | grep modified:) != "" ]] && echo "*"
-  }
-  function parse_git_dirty {
-    echo "$_bold$(parse_git_added)$(parse_git_modified)$(parse_git_deleted)$_normal"
-  }
-  function parse_git_branch {
-    echo `git branch --no-color 2> /dev/null | awk '{print $2}'`$(parse_git_dirty)
-  } 
-  
 	git_dir() {
 		base_dir=$(git rev-parse --show-cdup 2>/dev/null) || return 1
 		if [ -n "$base_dir" ]; then
@@ -36,7 +57,7 @@ __prompt_command() {
 		fi
 		sub_dir=$(git rev-parse --show-prefix)
 		sub_dir="/${sub_dir%/}"
-    ref=$(parse_git_branch)
+    ref=$(git_branch)
 		vcs="git"
 		alias pull="git pull"
 		alias commit="git commit -v -a"
