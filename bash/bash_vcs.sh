@@ -42,7 +42,7 @@ function git_branch_and_indicator {
 }
 
 __prompt_command() {
-	local vcs base_dir sub_dir ref last_command
+	local vcs vcs_indicator base_dir sub_dir ref last_command
 	sub_dir() {
 		local sub_dir
 		sub_dir=$(stat -f "${PWD}")
@@ -61,6 +61,7 @@ __prompt_command() {
 		sub_dir="/${sub_dir%/}"
     ref=$(git_branch_and_indicator)
 		vcs="git"
+		vcs_indicator=''
 		alias pull="git pull"
 		alias commit="git commit -v -a"
 		alias push="commit ; git push"
@@ -75,6 +76,7 @@ __prompt_command() {
 		sub_dir="/$(sub_dir "${base_dir}")"
 		ref=`svnversion`
 		vcs="svn"
+		vcs_indicator="(svn)"
 		alias pull="svn up"
 		alias commit="svn commit"
 		alias push="svn ci"
@@ -91,12 +93,12 @@ __prompt_command() {
 		sub_dir="/$(sub_dir "${base_dir}")"
 		ref=$(bzr revno 2>/dev/null)
 		vcs="bzr"
+		vcs_indicator="(bzr)"
 		alias pull="bzr pull"
 		alias commit="bzr commit"
 		alias push="bzr push"
 		alias revert="bzr revert"
 	}
-	
 
 	git_dir || svn_dir || bzr_dir
 
@@ -106,36 +108,32 @@ __prompt_command() {
 		alias up="pull"
 		alias cdb="cd $base_dir"
 		base_dir="$(basename "${base_dir}")"
-    working_on="$base_dir:"
-		__vcs_prefix="($vcs)"
-		__vcs_ref="[$ref]"
+    project="$base_dir:"
+		__vcs_label="$vcs_indicator"
+		__vcs_details="[$ref]"
 		__vcs_sub_dir="${sub_dir}"
 		__vcs_base_dir="${base_dir/$HOME/~}"
 	else
-		__vcs_prefix=''
 		__vcs_base_dir="${PWD/$HOME/~}"
-		__vcs_ref=''
-		__vcs_sub_dir=''
-    working_on=""
 	fi
 
 	last_command=$(history 5 | awk '{print $2}' | grep -v "^exit$" | tail -n 1)
-	__tab_title="$working_on[$last_command]"
+	__tab_title="$project[$last_command]"
 	__pretty_pwd="${PWD/$HOME/~}"
 	hostname=`hostname -s`
-  echo -e "\e]1;$__tab_title\007\c"
-  echo -e "\e]2;$hostname::$__pretty_pwd"
+  echo -e "\e]1;$__tab_title\007\c" # set tab title.  Doesn't work in Terminal.app
+  echo -e "\e]2;$hostname::$__pretty_pwd" # set window title
 }
 
 PROMPT_COMMAND=__prompt_command
-PS1='\a\u:$__vcs_prefix\[$_bold\]${__vcs_base_dir}\[$_normal\]${__vcs_ref}\[$_bold\]${__vcs_sub_dir}\[$_normal\]\$ '
+PS1='\a\u:$__vcs_label\[$_bold\]${__vcs_base_dir}\[$_normal\]${__vcs_details}\[$_bold\]${__vcs_sub_dir}\[$_normal\]\$ '
 
 # Show the currently running command in the terminal title:
 # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
 if [ -z "$TM_SUPPORT_PATH"]; then
-case $TERM in
-  rxvt|*term|xterm-color)
-    trap 'echo -e "\e]1;$working_on>$BASH_COMMAND<\007\c"' DEBUG
-  ;;
-esac
+  case $TERM in
+    rxvt|*term|xterm-color)
+      trap 'echo -e "\e]1;$project>$BASH_COMMAND<\007\c"' DEBUG # show currently executing command in tab title
+    ;;
+  esac
 fi
