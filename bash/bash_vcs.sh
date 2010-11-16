@@ -59,13 +59,13 @@ __prompt_command() {
 		fi
 		sub_dir=$(git rev-parse --show-prefix)
 		sub_dir="/${sub_dir%/}"
-    ref=$(git_branch_and_indicator)
-		vcs="git"
+        ref=$(git_branch_and_indicator)
+		vcs='git'
 		vcs_indicator=''
-		alias pull="git pull"
-		alias commit="git commit -v -a"
-		alias push="commit ; git push"
-		alias revert="git checkout"
+		alias pull='git pull'
+		alias commit='git commit -v -a'
+		alias push='commit ; git push'
+		alias revert='git checkout'
 	}
 
 	svn_dir() {
@@ -108,12 +108,15 @@ __prompt_command() {
 		alias up="pull"
 		alias cdb="cd $base_dir"
 		base_dir="$(basename "${base_dir}")"
-    project="$base_dir:"
+        project="$base_dir:"
 		__vcs_label="$vcs_indicator"
 		__vcs_details="[$ref]"
 		__vcs_sub_dir="${sub_dir}"
 		__vcs_base_dir="${base_dir/$HOME/~}"
 	else
+		__vcs_label=''
+		__vcs_details=''
+		__vcs_sub_dir=''
 		__vcs_base_dir="${PWD/$HOME/~}"
 	fi
 
@@ -126,7 +129,7 @@ __prompt_command() {
 }
 
 PROMPT_COMMAND=__prompt_command
-PS1='\a\u:$__vcs_label\[$_bold\]${__vcs_base_dir}\[$_normal\]${__vcs_details}\[$_bold\]${__vcs_sub_dir}\[$_normal\]\$ '
+PS1='\a\u:${__vcs_label}\[$_bold\]${__vcs_base_dir}\[$_normal\]${__vcs_details}\[$_bold\]${__vcs_sub_dir}\[$_normal\]\$ '
 
 # Show the currently running command in the terminal title:
 # http://www.davidpashley.com/articles/xterm-titles-with-bash.html
