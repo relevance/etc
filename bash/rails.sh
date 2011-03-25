@@ -1,9 +1,27 @@
-# ruby shortcuts
-alias sc='script/console'
-alias scprod='script/console production'
-alias ss='script/server'
-alias sg='script/generate'
-alias sdb='script/dbconsole'
+# Rails 2.x and 3.x shortcuts
+function ss {
+  if [ -e "./script/server" ]; then
+    ./script/server $*
+  elif [ -e "./script/rails" ]; then
+    ./script/rails server $*
+  fi
+}
+
+function sc {
+  if [ -e "./script/console" ]; then
+    ./script/console $*
+  elif [ -e "./script/rails" ]; then
+    ./script/rails console $*
+  fi
+}
+
+function sdb {
+  if [ -e "./script/dbconsole" ]; then
+    ./script/dbconsole $*
+  elif [ -e "./script/rails" ]; then
+    ./script/rails dbconsole $*
+  fi
+}
 
 # testing shortcuts
 alias rt='rake --trace'
