@@ -40,7 +40,7 @@ alias rdfl='rake db:fixtures:load'
 alias rdr='rake db:rollback'
 alias rroutes='rake routes'
 alias mroutes='rroutes | mate'
-alias rmate='mate *.rb *.yml *.watchr Rakefile README Gemfile *.markdown *.md app bin config doc examples db lib public script integration spec test stories features'
+alias rmate='mate *.rb *.yml *.watchr Rakefile README README* Gemfile *.markdown *.md app bin config doc examples db lib public script integration spec test stories features'
 # capistrano
 alias csd='cap staging deploy'
 alias be='bundle exec'
