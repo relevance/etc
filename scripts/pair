@@ -27,7 +27,9 @@ AUTHORS = {
   "dl" => "David Liebke",
   "dm" => "Don Mullen",
   "do" => "Duff OMelia",
+  "dw" => "Devin Walters",
   "em" => "Eric Meyer",
+  "gp" => "Geoff Parson",
   "hg" => "Heow Goodman",
   "jd" => "Jon Distad",
   "jf" => "Jeff Felchner",
@@ -53,7 +55,7 @@ AUTHORS = {
   "sk" => "Steve Kim",
   "ss" => "Stuart Sierra",
   "su" => "Sam Umbach",
-  "te" => "Tim Ewald",
+  "te" => "Tim Ewald"
 }
 
 ## End of configuration
