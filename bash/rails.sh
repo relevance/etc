@@ -44,3 +44,4 @@ alias rmate='mate *.rb *.yml *.watchr Rakefile README README* Gemfile *.markdown
 # capistrano
 alias csd='cap staging deploy'
 alias be='bundle exec'
+alias bi='bundle install'
