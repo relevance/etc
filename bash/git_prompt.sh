@@ -19,7 +19,7 @@ function git_branch_and_user {
   remote_pattern="# Your branch is (.*) of"
   diverge_pattern="# Your branch and (.*) have diverged"
   if [[ ! ${git_status}} =~ "working directory clean" ]]; then
-    state="${RED}⚡"
+    state=" ${RED}⚡"
   fi
   # add an else if or two here if you want to get more specific
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
@@ -34,7 +34,7 @@ function git_branch_and_user {
   fi
   if [[ ${git_status} =~ ${branch_pattern} ]]; then
     branch=${BASH_REMATCH[1]}
-    echo " (${branch})${ORANGE}($(git_user_initials))${remote}${state}"
+    echo "${branch} ${ORANGE}$(git_user_initials)${remote}${state} "
   fi
 }
 
@@ -44,12 +44,12 @@ function git_branch_and_user {
 # 
 #   git config --global user.initials 'jr'
 function git_user_initials {
-  git config --get user.initials || echo "-solo-"
+  git config --get user.initials || echo "✈" # 
 }
 
 function prompt_func() {
     previous_return_value=$?;
-    prompt="${TITLEBAR}${COLOR_NONE}[${COLOR_NONE}\W${GREEN}$(git_branch_and_user)${COLOR_NONE}]${COLOR_NONE} "
+    prompt="${TITLEBAR}${BLUE}\W ${GREEN}$(git_branch_and_user)${BLUE}›${COLOR_NONE} "
 
     if test $previous_return_value -eq 0
     then
