@@ -63,7 +63,8 @@ AUTHORS = {
   "ss" => "Stuart Sierra",
   "su" => "Sam Umbach",
   "te" => "Tim Ewald",
-  "vr" => "Vojto Rinik"
+  "vr" => "Vojto Rinik",
+  "zk" => "Zack Kim"
 }
 
 ## End of configuration
