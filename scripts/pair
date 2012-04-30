@@ -77,15 +77,16 @@ if authors.any?
     authors = authors[0..-2].join(", ") + " and " + authors.last
   end
 
+  pair_email = "pair+#{ARGV.map(&:downcase).join('+')}@thinkrelevance.com"
   initials = ARGV.join('/')
 
   `git config user.name '#{authors}'`
   `git config user.initials '#{initials}'`
-  `git config user.email '#{PAIR_EMAIL}'`
+  `git config user.email '#{pair_email}'`
 
   puts "user.name = #{authors}"
   puts "user.initials = #{initials}"
-  puts "user.email = #{PAIR_EMAIL}"
+  puts "user.email = #{pair_email}"
 else
   `git config --unset user.name`
   `git config --unset user.initials`
