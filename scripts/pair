@@ -74,21 +74,21 @@ unless File.exists?(".git")
   abort "This doesn't look like a git repository."
 end
 
-authors = ARGV.map do |initials|
-  if AUTHORS[initials.downcase]
-    AUTHORS[initials.downcase]
+initials = ARGV.map(&:downcase).map(&:strip).reject(&:empty?).uniq
+
+authors = initials.map do |initials|
+  if AUTHORS[initials]
+    AUTHORS[initials]
   else
     abort "Couldn't find author name for initials: #{initials}"
   end
 end
 
 if authors.any?
-  authors = to_sentence(authors)
-  pair_email = "pair+#{ARGV.map(&:downcase).join('+')}@thinkrelevance.com"
-  initials = ARGV.join('/')
+  pair_email = "pair+#{initials.join('+')}@thinkrelevance.com"
 
-  git_config_set('user.name', authors)
-  git_config_set('user.initials', initials)
+  git_config_set('user.name', to_sentence(authors))
+  git_config_set('user.initials', initials.join('/'))
   git_config_set('user.email', pair_email)
 else
   git_config_unset('user.name')
