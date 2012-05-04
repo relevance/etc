@@ -11,8 +11,6 @@
 #######################################################################
 ## Configuration
 
-PAIR_EMAIL = "pair@thinkrelevance.com"
-
 AUTHORS = {
   "ad" => "Alan Dipert",
   "ar" => "Alex Redington",
