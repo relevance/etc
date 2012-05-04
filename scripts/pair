@@ -62,6 +62,16 @@ def to_sentence(things)
   end
 end
 
+def git_config_set(name, value)
+  `git config "#{name}" "#{value}"`
+  puts "#{name} = \"#{value}\""
+end
+
+def git_config_unset(name)
+  `git config --unset "#{name}"`
+  puts "Unset #{name}"
+end
+
 unless File.exists?(".git")
   puts "This doesn't look like a git repository."
   exit 1
@@ -81,17 +91,11 @@ if authors.any?
   pair_email = "pair+#{ARGV.map(&:downcase).join('+')}@thinkrelevance.com"
   initials = ARGV.join('/')
 
-  `git config user.name '#{authors}'`
-  `git config user.initials '#{initials}'`
-  `git config user.email '#{pair_email}'`
-
-  puts "user.name = #{authors}"
-  puts "user.initials = #{initials}"
-  puts "user.email = #{pair_email}"
+  git_config_set('user.name', authors)
+  git_config_set('user.initials', initials)
+  git_config_set('user.email', pair_email)
 else
-  `git config --unset user.name`
-  `git config --unset user.initials`
-  `git config --unset user.email`
-
-  puts "Unset user.name, user.initials, and user.email"
+  git_config_unset('user.name')
+  git_config_unset('user.initials')
+  git_config_unset('user.email')
 end
