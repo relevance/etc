@@ -54,6 +54,14 @@ AUTHORS = {
 ## End of configuration
 #######################################################################
 
+def to_sentence(things)
+  if things.size < 3
+    things.join(" and ")
+  else
+    "#{things.first}, #{to_sentence(things.drop(1))}"
+  end
+end
+
 unless File.exists?(".git")
   puts "This doesn't look like a git repository."
   exit 1
@@ -69,14 +77,7 @@ authors = ARGV.map do |initials|
 end
 
 if authors.any?
-  if authors.size == 1
-    authors = authors.first
-  elsif authors.size == 2
-    authors = authors.join(" and ")
-  else
-    authors = authors[0..-2].join(", ") + " and " + authors.last
-  end
-
+  authors = to_sentence(authors)
   pair_email = "pair+#{ARGV.map(&:downcase).join('+')}@thinkrelevance.com"
   initials = ARGV.join('/')
 
