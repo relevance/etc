@@ -71,16 +71,14 @@ def git_config_unset(name)
 end
 
 unless File.exists?(".git")
-  puts "This doesn't look like a git repository."
-  exit 1
+  abort "This doesn't look like a git repository."
 end
 
 authors = ARGV.map do |initials|
   if AUTHORS[initials.downcase]
     AUTHORS[initials.downcase]
   else
-    puts "Couldn't find author name for initials: #{initials}"
-    exit 1
+    abort "Couldn't find author name for initials: #{initials}"
   end
 end
 
