@@ -81,7 +81,7 @@ authors = initials.map do |initials|
 end
 
 if authors.any?
-  pair_email = "pair+#{initials.join('+')}@thinkrelevance.com"
+  pair_email = "pair+#{initials.sort.join('+')}@thinkrelevance.com"
 
   git_config_set('user.name', to_sentence(authors))
   git_config_set('user.initials', initials.join('/'))
