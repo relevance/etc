@@ -76,8 +76,8 @@ end
 
 initials = ARGV.map(&:downcase).map(&:strip).reject(&:empty?).uniq
 
-authors = initials.map do |initials|
-  AUTHORS[initials] or abort("Couldn't find author name for initials: #{initials}")
+authors = initials.map do |initial|
+  AUTHORS[initial] or abort("Couldn't find author name for initials: #{initial}")
 end
 
 if authors.any?
