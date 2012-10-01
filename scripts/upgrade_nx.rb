@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'open-uri'
-body = open("http://www.nomachine.com/preview/download-package.php?Prod_Id=1").read
-package_uri = body[%r{http:.*?amd64\.deb}] or abort "Uri for debian package not found!"
+body = open("http://www.nomachine.com/preview/download-package.php?Prod_Id=3").read
+package_uri = body[%r{http:.*?nxserver[^/]+\.deb}] or abort "Uri for debian package not found!"
+# since we don't get the amd64 uri directly
+package_uri.sub!('i386', 'amd64')
 package_basename = package_uri[/nxserver.*\.deb$/] or abort "No basename for debian package found!"
 puts "Installing latest package: #{package_uri}\n\n"
 
