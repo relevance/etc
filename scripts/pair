@@ -21,6 +21,7 @@ AUTHORS = {
   "ca" => "Craig Andera",
   "cd" => "Clinton Dreisbach",
   "cr" => "Chris Redinger",
+  "dm" => "Daemian Mack",
   "gh" => "Gabriel Horner",
   "jd" => "Jon Distad",
   "jg" => "Justin Gehtland",
@@ -30,6 +31,7 @@ AUTHORS = {
   "jp" => "Jared Pace",
   "jr" => "Jason Rudolph",
   "ka" => "Kevin Altman",
+  "kn" => "Kevin Neaton",
   "ke" => "Kelly Ehret",
   "ld" => "Lake Denman",
   "lk" => "Larry Karnowski",
@@ -43,7 +45,9 @@ AUTHORS = {
   "sh" => "Stuart Halloway",
   "ss" => "Stuart Sierra",
   "su" => "Sam Umbach",
+  "tb" => "Timothy Baldridge",
   "te" => "Tim Ewald",
+  "yh" => "Yoko Harada",
 }
 
 ## End of configuration
