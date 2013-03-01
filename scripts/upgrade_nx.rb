@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'open-uri'
-body = open("http://www.nomachine.com/preview/download-package.php?Prod_Id=3").read
+body = open("http://www.nomachine.com/preview/download-package.php?Prod_Id=15").read
 package_uri = body[%r{http:.*?nxserver[^/]+\.deb}] or abort "Uri for debian package not found!"
 # since we don't get the amd64 uri directly
 package_uri.sub!('i386', 'amd64')
