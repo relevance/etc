@@ -13,6 +13,7 @@
 
 AUTHORS = {
   "ad" => "Alan Dipert",
+  "am" => "Alex Miller",
   "ar" => "Alex Redington",
   "aw" => "Alex Warr",
   "ba" => "Brenton Ashworth",
@@ -23,6 +24,7 @@ AUTHORS = {
   "cr" => "Chris Redinger",
   "dm" => "Daemian Mack",
   "gh" => "Gabriel Horner",
+  "gs" => "Ghadi Shayban",
   "jd" => "Jon Distad",
   "jg" => "Justin Gehtland",
   "jk" => "Jamie Kite",
