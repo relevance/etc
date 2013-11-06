@@ -4,4 +4,4 @@ export PATH=$PATH:$EC2_HOME/bin
 export EC2_PRIVATE_KEY=`ls $HOME/.ec2/pk-*.pem`
 export EC2_CERT=`ls $HOME/.ec2/cert-*.pem`
 # AWS command line tools require Java
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
+export JAVA_HOME=`/usr/libexec/java_home`
