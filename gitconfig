@@ -1,0 +1,45 @@
+# Add this to .gitconfig in your home dir to enable things like "git ci -m message"
+[user]
+	name = Relevance Pair
+	email = pair@thinkrelevance.com
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[merge]
+	tool = opendiff
+[core]
+	legacyheaders = false
+	excludesfile = $HOME/.gitignore
+[repack]
+	usedeltabaseoffset = true
+[alias]
+	br = branch
+	ci = commit
+	co = checkout
+	di = diff
+	st = status
+        ch = cherry -v origin
+
+	# show difference between the HEAD and the index
+	staged = diff --cached
+	# show difference between working tree and the index
+	unstaged = diff
+
+	# show staged and unstaged changes (what would be committed with "git commit -a")
+	both = diff HEAD
+[branch]
+	autosetuprebase = always
