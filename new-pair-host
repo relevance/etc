@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+ln -s /home/pair/opensource/etc/emacs.d /home/pair/.emacs.d
+ln -s /home/pair/opensource/etc/tmux.conf /home/pair/.tmux.conf
+ln -s /home/pair/opensource/etc/vimrc /home/pair/.vimrc
+ln -s /home/pair/opensource/etc/gitconfig /home/pair/.gitconfig
