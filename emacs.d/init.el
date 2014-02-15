@@ -45,11 +45,13 @@
 (defvar pair/packages '(autopair
 			clojure-mode
 			coffee-mode
+			cider
+			auto-complete
+			ac-nrepl
 			haml-mode
 			magit
 			markdown-mode
 			marmalade
-			nrepl
 			org
 			paredit
 			ruby-mode
@@ -68,3 +70,36 @@
   (dolist (pkg pair/packages)
     (when (not (package-installed-p pkg))
       (package-install pkg))))
+
+(require 'clojure-mode)
+(require 'paredit)
+(require 'cider)
+(add-hook 'clojure-mode-hook (lambda () 
+                               (paredit-mode t)
+                               (cider-mode t)))
+
+(add-hook 'cider-repl-mode-hook
+          (lambda ()
+            (cider-turn-on-eldoc-mode)
+            (paredit-mode 1)))
+
+(add-hook 'cider-mode-hook
+          (lambda ()
+            (cider-turn-on-eldoc-mode)
+            (paredit-mode 1)))
+
+(setq cider-popup-stacktraces nil)
+(setq cider-popup-stacktraces-in-repl nil)
+(add-to-list 'same-window-buffer-names "*cider*")
+
+(require 'ac-nrepl)
+(add-hook 'cider-mode-hook 'ac-nrepl-setup)
+(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes 'cider-mode))
+(setq cider-repl-print-length 1000)
+(setq nrepl-hide-special-buffers t)
+(setq cider-repl-pop-to-buffer-on-connect nil)
+
+(eval-after-load "cider"
+  '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))

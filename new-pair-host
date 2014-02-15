@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+if [ -d /home/pair/.emacs.d ]; then
+    mv /home/pair/.emacs.d /home/pair/emacs.d-$$
+fi
+
+ln -fs /home/pair/opensource/etc/emacs.d /home/pair/.emacs.d
+ln -fs /home/pair/opensource/etc/tmux.conf /home/pair/.tmux.conf
+ln -fs /home/pair/opensource/etc/vimrc /home/pair/.vimrc
+ln -fs /home/pair/opensource/etc/gitconfig /home/pair/.gitconfig
