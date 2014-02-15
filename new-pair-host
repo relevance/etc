@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 if [ -d /home/pair/.emacs.d ]; then
-    mv /home/pair/.emacs.d /home/pair/emacs.d-$$
+    mv /home/pair/.emacs.d /home/pair/emacs.d-$(date +%Y%m%d%H%M%S)
 fi
 
 ln -fs /home/pair/opensource/etc/emacs.d /home/pair/.emacs.d
