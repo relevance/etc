@@ -8,3 +8,10 @@ ln -fs /home/pair/opensource/etc/emacs.d /home/pair/.emacs.d
 ln -fs /home/pair/opensource/etc/tmux.conf /home/pair/.tmux.conf
 ln -fs /home/pair/opensource/etc/vimrc /home/pair/.vimrc
 ln -fs /home/pair/opensource/etc/gitconfig /home/pair/.gitconfig
+
+cat >>~/.bashrc <<EOF
+# Hook in extra stuff
+if [ -f ~/opensource/etc/bash/bash_extra_rc ] ; then
+  source ~/opensource/etc/bash/bash_extra_rc
+fi
+EOF
