@@ -84,14 +84,14 @@ unless File.exists?(".git")
   abort "This doesn't look like a git repository."
 end
 
-initials = ARGV.map(&:downcase).map(&:strip).reject(&:empty?).uniq
+initials = ARGV.map(&:downcase).map(&:strip).reject(&:empty?).uniq.sort
 
 authors = initials.map do |initial|
   AUTHORS[initial] or abort("Couldn't find author name for initials: #{initial}")
 end
 
 if authors.any?
-  pair_email = "pair+#{initials.sort.join('+')}@cognitect.com"
+  pair_email = "pair+#{initials.join('+')}@cognitect.com"
 
   git_config_set('user.name', to_sentence(authors))
   git_config_set('user.initials', initials.join('/'))
