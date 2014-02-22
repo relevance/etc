@@ -1,5 +1,5 @@
 # Relevance "etc" scripts
-B="~/opensource/etc/bash"
+B=~/opensource/etc/bash
 
 if [ -d $B ]; then
     source $B/git.sh
