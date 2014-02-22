@@ -1,20 +1,18 @@
 # Relevance "etc" scripts
-B="~/opensource/etc/bash"
-
-if [ -d $B ]; then
-    source $B/git.sh
-    source $B/git_autocompletion.sh
-    source $B/git_prompt.sh
-    source $B/ssh_autocompletion.sh
-    source $B/rails.sh
-    source $B/reagent.sh
+if [ -d ~/opensource/etc/bash ]; then
+    source ~/opensource/etc/bash/git.sh
+    source ~/opensource/etc/bash/git_autocompletion.sh
+    source ~/opensource/etc/bash/git_prompt.sh
+    source ~/opensource/etc/bash/ssh_autocompletion.sh
+    source ~/opensource/etc/bash/rails.sh
+    source ~/opensource/etc/bash/reagent.sh
 fi
 
 # Local executables
 export PATH=$HOME/bin:$PATH
 
 # Pairhost aliases
-alias sourcecode="truecrypt -t -k '' --protect-hidden=no $HOME/sourcecode.tc $HOME/src"
+#alias sourcecode="truecrypt -t -k '' --protect-hidden=no $HOME/sourcecode.tc $HOME/src"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
