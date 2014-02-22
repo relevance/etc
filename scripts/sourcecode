@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+LODEV=`sudo losetup -f`
+
 MOUNTPOINT=${HOME}/src
 VOLNAME=sourcecode
 ENCVOL=$HOME/sourcecode.tc
@@ -8,7 +10,7 @@ if [ ! -d ${MOUNTPOINT} ] ; then
     mkdir ${MOUNTPOINT}
 fi
 
-sudo losetup /dev/loop0 ${ENCVOL}
-sudo cryptsetup luksOpen /dev/loop0 ${VOLNAME}
+sudo losetup ${LODEV} ${ENCVOL}
+sudo cryptsetup luksOpen ${LODEV} ${VOLNAME}
 sudo mount /dev/mapper/${VOLNAME} ${MOUNTPOINT}
 sudo chown -R pair:pair ${MOUNTPOINT}
