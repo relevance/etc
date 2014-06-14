@@ -11,7 +11,7 @@ if [ -d $B ]; then
 fi
 
 # Local executables
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/opensource/etc/scripts:$PATH
 
 # Pairhost aliases
 alias sourcecode="truecrypt -t -k '' --protect-hidden=no $HOME/sourcecode.tc $HOME/src"
