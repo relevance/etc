@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# usage: mountsrc [cryptfile] [mount dir]
+
+CRYPTFILE=$1
+: ${CRYPTFILE:="/home/pair/sourcecode.tc"}
+
+MOUNTDIR=$2
+: ${MOUNTDIR:="/home/pair/src"}
+
+
+# check for sudo
+if [ `whoami` != "root" ]
+then 
+  echo "You should really run this as root." 
+  exit 1
+fi
+
+# make the dir if it doesn't exist
+if ! [ -d $MOUNTDIR ]
+then
+  echo "Creating mount point $MOUNTDIR."
+  sudo -u pair mkdir $MOUNTDIR
+fi
+  
+# the heavy lifting
+
+echo "Mounting source $CRYPTFILE to $MOUNTDIR."
+DEV=`losetup -f`
+losetup $DEV $CRYPTFILE
+cryptsetup luksOpen $DEV src
+mount -t ext4 /dev/mapper/src $MOUNTDIR

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# usage: umountsrc [cryptfile] [mount dir]
+
+# check for sudo
+if [ `whoami` != "root" ]
+then 
+  echo "You should really run this as root." 
+  exit 1
+fi
+
+CRYPTFILE=$1
+: ${CRYPTFILE:="/home/pair/sourcecode.tc"}
+
+MOUNTDIR=$2
+: ${MOUNTDIR:="/home/pair/src"}
+
+echo "Dismounting source code volume $CRYPTFILE from $MOUNTDIR"
+
+umount $MOUNTDIR
+cryptsetup luksClose src
+for lodevice in `sudo losetup  -j $CRYPTFILE  | awk -F ':' ' { print $1 } '` 
+do 
+  # we remove the loopback binding for each device
+  losetup -d $lodevice 
+done
+
