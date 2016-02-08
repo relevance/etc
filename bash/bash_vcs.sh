@@ -83,16 +83,20 @@ __prompt_command() {
 		alias revert="svn revert"
 	}
 
-	bzr_dir() {
-		# bzr root is really slow, so we simulate it
+    	bzr_base_dir() {
+        	# bzr root is really slow, so we simulate it
         	# with a bash script I modified frome here:
         	# http://unix.stackexchange.com/questions/6463/find-searching-in-parent-directories-instead-of-subdirectories
-		bzr_root=$(pwd -P 2>/dev/null || command pwd)
-        	while [ ! -e "$bzr_root/.bzr" ]; do
-            		bzr_root=${bzr_root%/*}
-            		if [ "$bzr_root" = "" ]; then break; fi
+        	base_dir=$(pwd -P 2>/dev/null || command pwd)
+        	while [ ! -e "$base_dir/.bzr" ]; do
+            		# delete /* from the end of base_dir
+            		base_dir=${base_dir%/*}
+            		if [ "$base_dir" = "" ]; then return 1; fi
         	done
-		base_dir=$bzr_root || return 1
+    	}
+
+	bzr_dir() {
+		bzr_base_dir || return 1
 		if [ -n "$base_dir" ]; then
 			base_dir=`cd $base_dir; pwd`
 		else
