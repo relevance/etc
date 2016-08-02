@@ -18,7 +18,7 @@ function git_branch_and_user {
   branch_pattern="^On branch ([^${IFS}]*)"
   remote_pattern="Your branch is (.*) of"
   diverge_pattern="Your branch and (.*) have diverged"
-  if [[ ! ${git_status} =~ "working directory clean" ]]; then
+  if [[ ! ${git_status} =~ "working tree clean" ]]; then
     state=" ${RED}⚡"
   else
     state=""
